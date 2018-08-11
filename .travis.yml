@@ -8,7 +8,7 @@ before_install:
 
 
 
-- docker run -e "BRANCH_NAME=cm-12.1" -e "DEVICE_LIST=a6000" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" lineageos4microg/docker-lineage-cicd
+- docker run -e "BRANCH_NAME=cm-12.1" -e "DEVICE_LIST=ancora" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" lineageos4microg/docker-lineage-cicd
 language: None
 cache: ccache
 env: GCC_VERSION=7
