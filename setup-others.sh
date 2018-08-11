@@ -9,7 +9,7 @@ chmod a+x ~/bin/repo
 PATH="$(pwd)/bin:$PATH"
 source ~/.profile
 cd ~/android/lineage
-repo init -u https://github.com/LineageOS/android.git -b cm-12.1
+repo init --depth=1 -u git://github.com/LineageOS/android.git -b cm-12.1
 repo sync
 source build/envsetup.sh
 
