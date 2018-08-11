@@ -11,5 +11,8 @@ source ~/.profile
 cd ~/android/lineage
 repo init --depth=1 -u git://github.com/LineageOS/android.git -b cm-12.1
 repo sync
-source build/envsetup.sh
+source build/envsetup.sh <<!
+y
+y
+!
 
