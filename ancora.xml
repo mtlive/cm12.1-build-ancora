@@ -33,6 +33,7 @@
   <project name="RR-msm7x30/samsung-kernel-msm7x30" path="kernel/samsung/ancora" remote="github" />
  
   <project path="packages/providers/MediaProvider" name="RR-msm7x30/android_packages_providers_MediaProvider" remote="msm7x30" />
-  
   <project path="vendor/samsung/ancora" name="RR-msm7x30/android_vendor_samsung_ancora" remote="github" revision="cm-12.1"/> 
+  #??
+    <project path="vendor/cm" name="RR-msm7x30/android_vendor_samsung_ancora" remote="github" revision="cm-12.1"/> 
 </manifest>
