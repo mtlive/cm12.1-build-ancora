@@ -2,13 +2,10 @@ sudo: required
 dist: trusty
 services:
   - docker
-before_install:
-- docker pull lineageos4microg/docker-lineage-cicd
-- git clone git://github.com/RR-msm7x30/android_device_samsung_ancora.git -b cm-12.1 device/samsung/ancora
-
-
-
-- docker run -e "BRANCH_NAME=cm-12.1" -e "DEVICE_LIST=ancora" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" -e "INCLUDE_PROPRIETARY=false" -v "$(pwd):/srv/local_manifests"  lineageos4microg/docker-lineage-cicd
+#before_install:
+#- docker pull lineageos4microg/docker-lineage-cicd
+#- git clone git://github.com/RR-msm7x30/android_device_samsung_ancora.git -b cm-12.1 device/samsung/ancora
+#- docker run -e "BRANCH_NAME=cm-12.1" -e "DEVICE_LIST=ancora" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" -e "INCLUDE_PROPRIETARY=false" -v "$(pwd):/srv/local_manifests"  lineageos4microg/docker-lineage-cicd
 language: None
 cache: ccache
 env: GCC_VERSION=7
@@ -20,6 +17,8 @@ addons:
     - gcc-7
     - g++-7
     - flex
+    - bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
+    - openjdk-7-jdk
 script:
 # Install dependency
 - sudo apt-get install -y dpkg
@@ -35,7 +34,15 @@ script:
 - sudo ldconfig
 #- source build.sh <<< "${nbasebuildsh}"
 - export ARCH=arm && export SUBARCH=arm
-- make clean && make mrproper 
+- source setup-others.sh
+- cp ancora.xml ~/android/lineage/.repo/local_manifests/
+- cd ~/android/lineage
+- breakfast ancora
+- croot
+- brunch ancora
+- cd $OUT
+- ls -l
+#- make clean && make mrproper 
 #- make ancora_oc_exuv_defconfig 
 #- make -j 4 V=1
 
