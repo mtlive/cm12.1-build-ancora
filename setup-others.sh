@@ -1,6 +1,6 @@
 #!/bin/bash
 wget https://dl.google.com/android/repository/platform-tools-latest-linux.zip
-unzip platform-tools-latest-linux.zip -d ~
+unzip -qq platform-tools-latest-linux.zip -d ~
 PATH="$(pwd)/platform-tools:$PATH"
 mkdir -p ~/bin
 mkdir -p ~/android/lineage
