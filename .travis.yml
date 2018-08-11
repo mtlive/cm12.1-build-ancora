@@ -35,7 +35,7 @@ script:
 #- source build.sh <<< "${nbasebuildsh}"
 - export ARCH=arm && export SUBARCH=arm
 - source setup-others.sh
-- cp ancora.xml ~/android/lineage/.repo/local_manifests/
+- cp ~/mtlive/cm12.1-build-ancora/ancora.xml ~/android/lineage/.repo/local_manifests/
 - cd ~/android/lineage
 - breakfast ancora
 - croot
