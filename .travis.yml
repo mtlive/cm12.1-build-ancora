@@ -1,0 +1,78 @@
+sudo: required
+dist: trusty
+services:
+  - docker
+#before_install:
+#- docker pull lineageos4microg/docker-lineage-cicd
+#- docker run -e "BRANCH_NAME=cm-11.0" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" lineageos4microg/docker-lineage-cicd
+language: None
+cache: ccache
+env: GCC_VERSION=7
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-7
+    - g++-7
+    - flex
+script:
+# Install dependency
+- sudo apt-get install -y dpkg
+- sudo add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ bionic main"
+#- wget http://ftp.br.debian.org/debian/pool/main/f/flex/libfl2_2.6.4-6.1_amd64.deb
+#- sudo dpkg -i libfl2_2.6.4-6.1_amd64.deb
+#- sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+- sudo apt-get update
+- sudo apt install libfl2
+# getting UberTC
+- git clone  --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-7.x" "../arm-eabi-7.x"
+#
+# This will call build.sh with following parameters inside ${nbasebuildsh}:
+#
+# 'export ndevicechoice="#"'
+# 'export nbasebuildsh="${ndevice}${ndevicechoice}${ntoolchain}${nbuild}q""'
+# 'source build.sh <<< "${nbasebuildsh}"'
+# 'export zipfile#="${zipfile}"'
+#
+# ${nclean} = Clean zip "1" and "2" is "Clean Kernel" 
+- nclean="12"
+# "o" is to disable/enable output when building kernel
+- noutput="o"
+# "3" is "Device Choice"
+- ndevice="1"
+# ${ntoolchain} = "4" is "Toolchain Choice"
+- ntoolchain="47"
+- export CROSS_COMPILE="$(pwd)/../arm-eabi-7.x/bin/arm-eabi-"
+# ${nbuild} = "5" is "Build Kernel" and "6" is "Zip the kernel and Modules"
+- nbuild="56"
+# ${nimage} = "7" is "Compressed image on/off"
+#- nimage="7"
+# Last "q" is to Exit of Script
+# ${ndevicechoice} is "Number of Choice under Device Choice"
+- ndevicechoice="1"
+- export nbasebuildsh="${nclean}${ntoolchain}${ndevice}${ndevicechoice}${nimage}${nbuild}q"
+- sudo find / -name libfl.so.2
+- export LD_LIBRARY_PATH="/usr/local/lib"
+- sudo ldconfig
+- echo $LD_LIBRARY_PATH
+#- source build.sh <<< "${nbasebuildsh}"
+- export ARCH=arm && export SUBARCH=arm
+- make clean && make mrproper 
+- make ancora_oc_exuv_defconfig 
+- make -j 4 V=1
+
+
+# Export of zipfile to deploy
+#- export zipfile="${zipfile}"
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key: ${KEY}
+  file_glob: true
+  file: "arch/${ARCH}/boot/*Image*"
+  on:
+  #  tags: true
+    all_branches: true
+
