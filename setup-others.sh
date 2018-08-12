@@ -13,6 +13,8 @@ repo init --depth=1 -u git://github.com/LineageOS/android.git -b cm-12.1 --quiet
 y
 y
 !
+mkdir ~/android/lineage/.repo/local_manifests
+curl https://raw.githubusercontent.com/mtlive/cm12.1-build-ancora/master/ancora.xml -o ~/android/lineage/.repo/local_manifests/ancora.xml
 repo init -m ancora.xml
 repo sync --quiet
 source build/envsetup.sh 
