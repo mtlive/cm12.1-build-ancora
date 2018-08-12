@@ -13,6 +13,7 @@ repo init --depth=1 -u git://github.com/LineageOS/android.git -b cm-12.1 --quiet
 y
 y
 !
+repo init -m ancora.xml
 repo sync --quiet
 source build/envsetup.sh 
 
