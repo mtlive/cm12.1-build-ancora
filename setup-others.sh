@@ -15,6 +15,7 @@ y
 !
 mkdir -p ~/android/lineage/.repo/local_manifests
 curl https://raw.githubusercontent.com/mtlive/cm12.1-build-ancora/master/ancora.xml -o ~/android/lineage/.repo/local_manifests/ancora.xml
+repo -u ~/android/lineage/.repo/local_manifests/
 repo init -m ancora.xml
 repo sync --quiet
 source build/envsetup.sh 
