@@ -37,8 +37,8 @@ script:
 - mkdir ~/android/lineage/.repo/local_manifests
 - curl https://raw.githubusercontent.com/mtlive/cm12.1-build-ancora/master/ancora.xml -o ~/android/lineage/.repo/local_manifests/ancora.xml
 - source setup-others.sh
-- cd ~/android/lineage
 - source build/envsetup.sh
+- cd ~/android/lineage
 - breakfast ancora
 - croot
 - brunch ancora
