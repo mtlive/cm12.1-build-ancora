@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
   
-  
-  <remote  name="github"
-           fetch="https://github.com/"
-           revision="cm-12.1" />
-  
   <project path="bionic" name="RR-msm7x30/android_bionic" remote="github" />
   <project path="bootable/recovery" name="RR-msm7x30/android_bootable_recovery" groups="pdk" remote="github" />
   <project path="device/samsung/ancora" name="RR-msm7x30/android_device_samsung_ancora" remote="github" revision="cm-12.1" />
