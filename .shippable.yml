@@ -28,6 +28,8 @@ build:
     - sudo apt-get purge openjdk*
     - sudo apt install openjdk-7-jdk
     - sudo apt install icedtea-7-plugin
+    - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+    - export PATH=/usr/lib/jvm/java-7-openjdk-amd64/bin:$PATH
     - sudo update-java-alternatives -s java-1.7.0-openjdk-amd64
     - java -version
 # getting UberTC
