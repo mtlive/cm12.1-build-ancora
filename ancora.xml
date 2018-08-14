@@ -7,11 +7,6 @@
   <remove-project name="LineageOS/android_frameworks_base"/>
   <remove-project name="LineageOS/android_packages_providers_MediaProvider"/>
   
-  
-  <remove-project name="LineageOS/android_vendor_cm"/>
-
-  
-  
   <project path="bionic" name="RR-msm7x30/android_bionic" remote="github" />
   <project path="bootable/recovery" name="RR-msm7x30/android_bootable_recovery" groups="pdk" remote="github" />
   <project path="device/samsung/ancora" name="RR-msm7x30/android_device_samsung_ancora" remote="github" revision="cm-12.1" />
@@ -21,8 +16,6 @@
   <project path="packages/providers/MediaProvider" name="RR-msm7x30/android_packages_providers_MediaProvider" remote="github" />
   <project path="vendor/samsung/ancora" name="RR-msm7x30/android_vendor_samsung_ancora" remote="github" revision="cm-12.1"/> 
   
-  
-  <project path="vendor/cm" name="RR-msm7x30/android_vendor_resurrection" remote="github" revision="lollipop5.1"/>
  
   
 </manifest>
