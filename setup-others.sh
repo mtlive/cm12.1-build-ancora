@@ -16,6 +16,5 @@ y
 mkdir -p ~/android/lineage/.repo/local_manifests
 curl https://raw.githubusercontent.com/mtlive/cm12.1-build-ancora/master/ancora.xml -o ~/android/lineage/.repo/local_manifests/ancora.xml
 repo sync --quiet
-find . -name "*.mk" -type f -exec sed -i 's/vendor\/cm\/config\//vendor\/cm\/config\//g' {} +
 source build/envsetup.sh 
 
