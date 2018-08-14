@@ -1,37 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-
-  <remote  name="aosp"
-           fetch="https://android.googlesource.com"
-           review="android-review.googlesource.com"
-           revision="refs/tags/android-5.1.1_r24" />
-
-  <remote  name="github"
-           fetch=".."
-           review="review.cyanogenmod.org" />
-
-  <remote  name="private"
-           fetch="ssh://git@github.com" />
-           
-  <remote  name="msm7x30"
-           fetch="https://github.com"
-           revision="cm-12.1"/>
-
-   <remote name="bitbucket" 
-          fetch="https://bitbucket.org/" />
-
-  <default revision="refs/heads/stable/cm-12.1-YOG7D"
-           remote="github"
-           sync-c="true"
-           sync-j="4" />
   
-  <project path="bionic" name="RR-msm7x30/android_bionic" remote="msm7x30" />
-  <project path="bootable/recovery" name="RR-msm7x30/android_bootable_recovery" groups="pdk" remote="msm7x30" />
-  <project path="device/samsung/ancora" name="RR-msm7x30/android_device_samsung_ancora" remote="msm7x30" revision="cm-12.1" />
-  <project path="frameworks/base" name="RR-msm7x30/android_frameworks_base" remote="msm7x30" revision="cm-12.1" />
-  <project path="frameworks/native" name="RR-msm7x30/android_frameworks_native" remote="msm7x30" />
+  
+  <remote  name="github"
+           fetch="https://github.com/"
+           revision="cm-12.1" />
+  
+  <project path="bionic" name="RR-msm7x30/android_bionic" remote="github" />
+  <project path="bootable/recovery" name="RR-msm7x30/android_bootable_recovery" groups="pdk" remote="github" />
+  <project path="device/samsung/ancora" name="RR-msm7x30/android_device_samsung_ancora" remote="github" revision="cm-12.1" />
+  <project path="frameworks/base" name="RR-msm7x30/android_frameworks_base" remote="github" revision="cm-12.1" />
+  <project path="frameworks/native" name="RR-msm7x30/android_frameworks_native" remote="github" />
   <project name="RR-msm7x30/samsung-kernel-msm7x30" path="kernel/samsung/ancora" remote="github" />
  
-  <project path="packages/providers/MediaProvider" name="RR-msm7x30/android_packages_providers_MediaProvider" remote="msm7x30" />
+  <project path="packages/providers/MediaProvider" name="RR-msm7x30/android_packages_providers_MediaProvider" remote="github" />
   <project path="vendor/samsung/ancora" name="RR-msm7x30/android_vendor_samsung_ancora" remote="github" revision="cm-12.1"/> 
 </manifest>
