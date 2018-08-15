@@ -21,10 +21,11 @@ build:
 # OpenJDK 1.7 Ubuntu 16+
     - sudo apt-get  -qq update 
     - sudo apt  -qq install libfl2
-    - sudo add-apt-repository 'deb http://security.ubuntu.com/ubuntu trusty-security main'
+    - sudo apt install debian-archive-keyring 
+    - sudo add-apt-repository 'deb http://httpredir.debian.org/debian experimental main' 
+    - sudo add-apt-repository 'deb http://httpredir.debian.org/debian sid main' 
     - sudo apt -qq update
-    - sudo apt-get install aptitude
-    - sudo aptitude install openjdk-7-jdk
+    - sudo apt install openjdk-7-jdk
     - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
     - export PATH=/usr/lib/jvm/java-7-openjdk-amd64/bin:$PATH
     - sudo update-java-alternatives -s java-1.7.0-openjdk-amd64
