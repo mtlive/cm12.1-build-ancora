@@ -12,7 +12,7 @@
   <project path="device/samsung/ancora" name="RR-msm7x30/android_device_samsung_ancora" remote="github" revision="cm-12.1" />
   <project path="frameworks/base" name="RR-msm7x30/android_frameworks_base" remote="github" revision="cm-12.1" />
   <project path="frameworks/native" name="RR-msm7x30/android_frameworks_native" remote="github" />
-  <project path="kernel/samsung/msm7x30" name="RR-msm7x30/samsung-kernel-msm7x30" remote= "github" revision="cm-12.1"/> 
+  <project path="kernel/samsung/msm7x30-common" name="RR-msm7x30/samsung-kernel-msm7x30" remote= "github" revision="cm-12.1"/> 
   <project path="packages/providers/MediaProvider" name="RR-msm7x30/android_packages_providers_MediaProvider" remote="github" />
   <project path="vendor/samsung/ancora" name="RR-msm7x30/android_vendor_samsung_ancora" remote="github" revision="cm-12.1"/> 
   
