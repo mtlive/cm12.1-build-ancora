@@ -9,13 +9,13 @@ chmod a+x ~/bin/repo
 PATH="$(pwd)/bin:$PATH"
 source ~/.profile
 cd ~/android/lineage
-repo init --depth=1 -u git://github.com/LineageOS/android.git -b cm-12.1  <<!
+repo init --depth=1 -u git://github.com/LineageOS/android.git --quiet -b cm-12.1  <<!
 y
 y
 !
 mkdir -p ~/android/lineage/.repo/local_manifests
 curl https://raw.githubusercontent.com/mtlive/cm12.1-build-ancora/master/ancora.xml -o ~/android/lineage/.repo/local_manifests/ancora.xml
-repo sync 
+repo sync --quiet 
 ./build/envsetup.sh 
 ln -s vendor/extra/updates.sh updates.sh
 ./updates.sh
