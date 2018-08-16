@@ -16,10 +16,10 @@ y
 mkdir -p ~/android/lineage/.repo/local_manifests
 curl https://raw.githubusercontent.com/mtlive/cm12.1-build-ancora/master/ancora.xml -o ~/android/lineage/.repo/local_manifests/ancora.xml
 repo sync --quiet 
-./build/envsetup.sh 
-ln -s vendor/extra/updates.sh updates.sh
-./updates.sh
-cd ~/android/system/vendor/cm
-./get-prebuilts
-cd ~/android/system
-. build/envsetup.sh
+source build/envsetup.sh 
+ln -s vendor/extra/updates.sh ~/android/lineage/updates.sh
+. updates.sh
+cd  ~/android/lineage/vendor/cm
+. get-prebuilts
+cd ~/android/lineage
+source build/envsetup.sh
