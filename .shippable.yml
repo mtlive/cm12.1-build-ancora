@@ -41,6 +41,7 @@ build:
     - export ARCH=arm && export SUBARCH=arm
     - source setup-others.sh
     - cd ~/android/lineage
+    - ls
     - breakfast ancora
     - croot
     - brunch ancora
