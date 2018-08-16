@@ -6,9 +6,12 @@
 #- docker run -e "BRANCH_NAME=cm-12.1" -e "DEVICE_LIST=ancora" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" -e "INCLUDE_PROPRIETARY=false" -v "$(pwd):/srv/local_manifests"  lineageos4microg/docker-lineage-cicd
 
 env: GCC_VERSION=7
-language: c
+language: none
+
 
 build:
+  runtime:
+    container: false
   ci:
 # Install dependency
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
