@@ -31,6 +31,8 @@ task:
     - ldconfig
 #- source build.sh <<< "${nbasebuildsh}"
     - export ARCH=arm && export SUBARCH=arm
+#Fix mesg n stdin: is not a tty
+    - cp -f .profile ~/.profile
     - source setup-others.sh
     - cd $OUT
     - ls -l
