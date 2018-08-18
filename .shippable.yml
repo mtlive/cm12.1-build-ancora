@@ -39,6 +39,8 @@ build:
 #- source build.sh <<< "${nbasebuildsh}"
     - export ARCH=arm && export SUBARCH=arm
     - source setup-others.sh
+    - cd $OUT
+    - ls -l
 
 # Export of zipfile to deploy
 #- export zipfile="${zipfile}"
