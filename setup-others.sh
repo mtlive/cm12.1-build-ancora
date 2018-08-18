@@ -14,9 +14,10 @@ y
 y
 !
 
-#Device specific
+#---Device specific---
 mkdir -p ~/android/lineage/.repo/local_manifests
 curl https://raw.githubusercontent.com/mtlive/cm12.1-build-ancora/master/ancora.xml -o ~/android/lineage/.repo/local_manifests/ancora.xml
+#---
 
 repo sync --quiet 
 source build/envsetup.sh
@@ -30,5 +31,4 @@ ls
 breakfast ancora
 croot
 brunch ancora
-cd $OUT
-ls -l
+
