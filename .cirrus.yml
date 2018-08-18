@@ -11,6 +11,7 @@ task:
 #- docker run -e "BRANCH_NAME=cm-12.1" -e "DEVICE_LIST=ancora" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" -e "INCLUDE_PROPRIETARY=false" -v "$(pwd):/srv/local_manifests"  lineageos4microg/docker-lineage-cicd
   build_script:
 # Install dependency
+    - apt-get install software-properties-common
     - add-apt-repository "ubuntu-toolchain-r-test"
     - apt-get  -qq install -y dpkg bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev openjdk-7-jdk subversion> /dev/null
     - add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ bionic main"
