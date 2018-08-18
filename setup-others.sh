@@ -13,7 +13,22 @@ repo init --depth=1 -u git://github.com/LineageOS/android.git --quiet -b cm-12.1
 y
 y
 !
+
+#Device specific
 mkdir -p ~/android/lineage/.repo/local_manifests
 curl https://raw.githubusercontent.com/mtlive/cm12.1-build-ancora/master/ancora.xml -o ~/android/lineage/.repo/local_manifests/ancora.xml
+
 repo sync --quiet 
 source build/envsetup.sh
+cd ~/android/lineage
+
+#Updating libshims
+#rm -R device/samsung/ancora/libshims/8
+svn checkout --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/libshims "device/samsung/ancora/libshims"
+ls
+
+breakfast ancora
+croot
+brunch ancora
+cd $OUT
+ls -l
