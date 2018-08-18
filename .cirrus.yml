@@ -1,6 +1,6 @@
 task:
   container:
-#    image: openjdk:8-jdk
+    image: openjdk:7-jdk
     cpu: 4
     memory: 8
 #services:
