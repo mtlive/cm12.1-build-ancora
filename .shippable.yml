@@ -37,7 +37,8 @@ build:
     - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
     - export PATH=/usr/lib/jvm/java-7-openjdk-amd64/bin:$PATH
     - sudo update-java-alternatives -s java-1.7.0-openjdk-amd64
-    - java -version
+    - java_version := $(shell java -version 2>&1 | grep '^java .*[ "]1\.7[\. "$$]')
+    - javac_version := $(shell java -version 2>&1 | grep '[ "]1\.7[\. "$$]')
 # getting UberTC
     - git clone  --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
     - export CROSS_COMPILE="$(pwd)/../arm-eabi-${GCC_VERSION}/bin/arm-eabi-"
