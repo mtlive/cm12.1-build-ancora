@@ -30,5 +30,5 @@ svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/b
 
 breakfast ancora
 croot
-#brunch ancora
+brunch ancora
 
