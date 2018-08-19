@@ -6,8 +6,7 @@
 #- docker run -e "BRANCH_NAME=cm-12.1" -e "DEVICE_LIST=ancora" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" -e "INCLUDE_PROPRIETARY=false" -v "$(pwd):/srv/local_manifests"  lineageos4microg/docker-lineage-cicd
 
 env: 
-  - GCC_VERSION=7.x
-  - secure: MBd3i5Z7I4jws+3WFCtlQ3OEWiXTd+OkqebwQmfF5TN3T8QZ9xeS599gGcTYZvzz5dJwox/DQLew5iHXjtEoJmjSKPd++7yF6zKQ2qM1Kzzw6hW0S0bKSTOzUJkwml2XhACB5fhIr+27llk5F23pOTrGcQYij2Vmmm73GFtvMDvOW91V/HCF8iZlbgRbnnsJilKKagBL1IRYec+u7luCrbvLRa02CwEwMJT+Vnr0x1LGHRClTOFrWmYEIkGhfCxdOpJASN1tqxjIj1YUVs+PiBaqTF8picDsELNm060qRWm14GHXL62sqkORGXvZ7MP0zEyEfmZcaH3K5dCRblgISw== 
+  - GCC_VERSION=7.x secure: MBd3i5Z7I4jws+3WFCtlQ3OEWiXTd+OkqebwQmfF5TN3T8QZ9xeS599gGcTYZvzz5dJwox/DQLew5iHXjtEoJmjSKPd++7yF6zKQ2qM1Kzzw6hW0S0bKSTOzUJkwml2XhACB5fhIr+27llk5F23pOTrGcQYij2Vmmm73GFtvMDvOW91V/HCF8iZlbgRbnnsJilKKagBL1IRYec+u7luCrbvLRa02CwEwMJT+Vnr0x1LGHRClTOFrWmYEIkGhfCxdOpJASN1tqxjIj1YUVs+PiBaqTF8picDsELNm060qRWm14GHXL62sqkORGXvZ7MP0zEyEfmZcaH3K5dCRblgISw== 
 language: none
 
 build:
