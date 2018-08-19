@@ -1,6 +1,15 @@
-# Bash doesn't load its interactive initialization file if it's invoked as
-# a login shell, so do it manually.
-case $- in
-  *i*) if [ -n "$BASH" ]; then . ~/.bashrc;; fi
-esac
-#source: https://unix.stackexchange.com/questions/109549/stdin-is-not-a-tty-mails-for-running-scripts-as-cron-jobs
+#Fixes stdin: is not a tty
+if `tty -s`
+then
+    mesg y
+    TTY=`tty`
+else`
+    TTY='not a tty'
+fi
+#https://unix.stackexchange.com/questions/250945/why-do-i-see-the-error-stdin-is-not-a-tty-when-using-x2go-to-remotely-connect
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
