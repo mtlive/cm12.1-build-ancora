@@ -45,7 +45,7 @@ build:
     - ccache -M 30G
 #    - export CCACHE_DIR=
     - source setup-others.sh
-    - cd $OUT
+#    - cd $OUT
     - ls -l
 
 # Export of zipfile to deploy
