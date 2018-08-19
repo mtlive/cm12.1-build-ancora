@@ -36,7 +36,7 @@ task:
     - cat .profile >> ~/.profile
     - chmod +x setup-others.sh
     - ./setup-others.sh
-    - cd $OUT
+    - cd ~/android/lineage/out
     - ls -l
 
 #- make clean && make mrproper 
@@ -52,7 +52,7 @@ deploy:
   skip_cleanup: true
   api_key: ${KEY}
   file_glob: true
-  file: "$OUT/*.zip"
+  file: "~/android/lineage/out/*.zip"
   on:
   #  tags: true
     all_branches: true
