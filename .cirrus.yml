@@ -34,6 +34,7 @@ task:
 #Fix mesg n stdin: is not a tty
     - sed -i '/mesg[[:space:]]n/d' ~/.profile
     - cat .profile >> ~/.profile
+    - chmod +x setup-others.sh
     - ./setup-others.sh
     - cd $OUT
     - ls -l
