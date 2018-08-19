@@ -25,6 +25,8 @@ cd ~/android/lineage
 
 
 #Patches for ancora
+git config --global user.email "you@example.com"
+git config --global user.name "mt"
 cd bionic
 git remote add ancora-bionic git://github.com/RR-msm7x30/android_bionic
 git fetch ancora-bionic
