@@ -12,6 +12,8 @@ language: none
 build:
   runtime:
     container: false
+   cache: true
+   cache_dir_list: ~/.ccache
   ci:
 # Install dependencies
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
@@ -26,7 +28,7 @@ build:
     - sudo apt install debian-archive-keyring 
     - sudo add-apt-repository 'deb http://httpredir.debian.org/debian experimental main' 
     - sudo add-apt-repository 'deb http://httpredir.debian.org/debian sid main' 
-    - sudo apt -qq update
+#    - sudo apt -qq update
     - sudo apt install openjdk-7-jdk
     - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
     - export PATH=/usr/lib/jvm/java-7-openjdk-amd64/bin:$PATH
@@ -38,6 +40,9 @@ build:
     - sudo ldconfig
 #- source build.sh <<< "${nbasebuildsh}"
     - export ARCH=arm && export SUBARCH=arm
+    - export USE_CCACHE=1
+    - ccache -M 40G
+    - export CCACHE_DIR=
     - source setup-others.sh
     - cd $OUT
     - ls -l
