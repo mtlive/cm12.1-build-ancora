@@ -5,7 +5,9 @@
 #- git clone git://github.com/RR-msm7x30/android_device_samsung_ancora.git -b cm-12.1 device/samsung/ancora
 #- docker run -e "BRANCH_NAME=cm-12.1" -e "DEVICE_LIST=ancora" -v "/home/user/lineage:/srv/src" -v "/home/user/zips:/srv/zips" -v "/home/user/logs:/srv/logs" -v "/home/user/cache:/srv/ccache" -e "INCLUDE_PROPRIETARY=false" -v "$(pwd):/srv/local_manifests"  lineageos4microg/docker-lineage-cicd
 
-env: GCC_VERSION=7.x
+env: 
+  - GCC_VERSION=7.x
+  - secure: MBd3i5Z7I4jws+3WFCtlQ3OEWiXTd+OkqebwQmfF5TN3T8QZ9xeS599gGcTYZvzz5dJwox/DQLew5iHXjtEoJmjSKPd++7yF6zKQ2qM1Kzzw6hW0S0bKSTOzUJkwml2XhACB5fhIr+27llk5F23pOTrGcQYij2Vmmm73GFtvMDvOW91V/HCF8iZlbgRbnnsJilKKagBL1IRYec+u7luCrbvLRa02CwEwMJT+Vnr0x1LGHRClTOFrWmYEIkGhfCxdOpJASN1tqxjIj1YUVs+PiBaqTF8picDsELNm060qRWm14GHXL62sqkORGXvZ7MP0zEyEfmZcaH3K5dCRblgISw== 
 language: none
 
 build:
@@ -14,7 +16,6 @@ build:
   cache: true
   cache_dir_list: 
     - ~/.ccache
-    - ~/android/lineage
   ci:
 # Install dependencies
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
@@ -44,8 +45,16 @@ build:
     - export USE_CCACHE=1
     - ccache -M 30G
 #    - export CCACHE_DIR=
-    - source setup-others.sh
-#    - cd $OUT
+    - timeout 30m source setup-others.sh
+    - >
+      CACHE_FILE="~/.ccache" && echo "Create cache archive" &&
+      tar -czf ${SHIPPABLE_BUILD_DIR}/.ccache &&
+      echo "Upload cache archive" &&
+      sudo apt-get install -yy jq &&
+      artifact_url=$(curl -s --connect-timeout 60 --max-time 120 -XGET "$SHIPPABLE_API_URL/projects/$PROJECT_ID/artifactUrl?artifactName=$PROJECT_CACHE_ARCHIVE" -H authorization:"apiToken $API_TOKEN_FOR_CACHE_UPLOAD" | jq -r '.put') &&
+      curl -s --connect-timeout 60 --max-time 120 -XPUT "$artifact_url" -T "$CACHE_FILE" &&
+      echo "Cache archive uploaded successfully";
+  #  - cd $OUT
     - ls -l
 
 # Export of zipfile to deploy
