@@ -45,7 +45,8 @@ build:
     - export USE_CCACHE=1
     - ccache -M 30G
 #    - export CCACHE_DIR=
-    - timeout 30m source setup-others.sh
+    - chmod +x setup-others.sh
+    - timeout 30m ./setup-others.sh
     - >
       CACHE_FILE="~/.ccache" && echo "Create cache archive" &&
       tar -czf ${SHIPPABLE_BUILD_DIR}/.ccache &&
