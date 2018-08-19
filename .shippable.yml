@@ -51,7 +51,7 @@ build:
     - timeout 30m ./setup-others.sh
     - >
       CACHE_FILE="~/.ccache" && echo "Create cache archive" &&
-      tar -czf ${SHIPPABLE_BUILD_DIR}/.ccache &&
+      GZIP=-2 tar -czf ${SHIPPABLE_BUILD_DIR}/.ccache &&
       echo "Upload cache archive" &&
       sudo apt-get install -yy jq &&
       artifact_url=$(curl -s --connect-timeout 60 --max-time 120 -XGET "$SHIPPABLE_API_URL/projects/$PROJECT_ID/artifactUrl?artifactName=$PROJECT_CACHE_ARCHIVE" -H authorization:"apiToken $API_TOKEN_FOR_CACHE_UPLOAD" | jq -r '.put') &&
