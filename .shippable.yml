@@ -12,8 +12,8 @@ language: none
 build:
   runtime:
     container: false
-   cache: true
-   cache_dir_list: ~/.ccache
+  cache: true
+  cache_dir_list: ~/.ccache
   ci:
 # Install dependencies
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
