@@ -14,7 +14,7 @@ y
 y
 !
 
-#---Device specific---
+#---Device specific repos---
 mkdir -p ~/android/lineage/.repo/local_manifests
 curl https://raw.githubusercontent.com/mtlive/cm12.1-build-ancora/master/ancora.xml -o ~/android/lineage/.repo/local_manifests/ancora.xml
 #---
@@ -23,11 +23,25 @@ repo sync --quiet
 source build/envsetup.sh
 cd ~/android/lineage
 
+
+#Patches for ancora
+cd bionic
+git remote add ancora-bionic git://github.com/RR-msm7x30/android_bionic
+git fetch ancora-bionic
+git merge --allow-unrelated-histories ancora-bionic/cm-12.1
+cd ../frameworks/native
+git remote add ancora-fwnative git://github.com/sirmordred/android_frameworks_native
+git fetch ancora-fwnative
+git merge --allow-unrelated-histories ancora-fwnative/cm-12.1
+cd ../frameworks/base
+curl -O https://github.com/mtlive/cm12.1-build-ancora/raw/master/android_frameworks_base_simple_dialog.patch
+git apply android_frameworks_base_simple_dialog.patch
+
+
 #Updating libshims
 #rm -R device/samsung/ancora/libshims/8
 svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/libshims "device/samsung/ancora/libshims"
 svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/camera "device/samsung/ancora/camera"
-#---
 
 breakfast ancora
 croot
