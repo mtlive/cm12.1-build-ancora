@@ -36,7 +36,7 @@ build:
     - sudo apt install openjdk-7-jdk
     - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
     - export PATH=/usr/lib/jvm/java-7-openjdk-amd64/bin:$PATH
-    - sudo update-java-alternatives -s java-1.7.0-openjdk-amd64
+    - sudo update-alternatives --config java && sudo update-alternatives --config javac
     - java_version= $(shell java -version 2>&1 | grep '^java .*[ "]1\.7[\. "$$]')
     - javac_version= $(shell java -version 2>&1 | grep '[ "]1\.7[\. "$$]')
 # getting UberTC
