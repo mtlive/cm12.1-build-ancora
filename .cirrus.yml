@@ -34,7 +34,7 @@ task:
 #Fix mesg n stdin: is not a tty
     - sed -i '/mesg[[:space:]]n/d' ~/.profile
     - cat .profile >> ~/.profile
-    - source setup-others.sh
+    - ./setup-others.sh
     - cd $OUT
     - ls -l
 
@@ -51,7 +51,7 @@ deploy:
   skip_cleanup: true
   api_key: ${KEY}
   file_glob: true
-  file: "arch/${ARCH}/boot/*Image*"
+  file: "$OUT/*.zip"
   on:
   #  tags: true
     all_branches: true
