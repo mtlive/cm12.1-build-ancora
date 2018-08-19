@@ -32,7 +32,7 @@ task:
 #- source build.sh <<< "${nbasebuildsh}"
     - export ARCH=arm && export SUBARCH=arm
 #Fix mesg n stdin: is not a tty
-    - sed '/mesg n/d' ~/.profile
+    - sed -i '/mesg[[:space:]]n/d' ~/.profile
     - cat .profile >> ~/.profile
     - source setup-others.sh
     - cd $OUT
