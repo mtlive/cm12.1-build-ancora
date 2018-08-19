@@ -8,12 +8,13 @@
 env: GCC_VERSION=7.x
 language: none
 
-
 build:
   runtime:
     container: false
   cache: true
-  cache_dir_list: ~/.ccache
+  cache_dir_list: 
+    - ~/.ccache
+    - ~/android/lineage
   ci:
 # Install dependencies
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
@@ -41,8 +42,8 @@ build:
 #- source build.sh <<< "${nbasebuildsh}"
     - export ARCH=arm && export SUBARCH=arm
     - export USE_CCACHE=1
-    - ccache -M 40G
-    - export CCACHE_DIR=
+    - ccache -M 30G
+#    - export CCACHE_DIR=
     - source setup-others.sh
     - cd $OUT
     - ls -l
@@ -55,7 +56,7 @@ deploy:
   skip_cleanup: true
   api_key: ${KEY}
   file_glob: true
-  file: "arch/${ARCH}/boot/*Image*"
+  file: "$OUT/*.zip"
   on:
   #  tags: true
     all_branches: true
