@@ -41,12 +41,12 @@ cd ~/android/lineage
 
 #Updating libshims
 #rm -R device/samsung/ancora/libshims/8
-svn export --force https://github.com/sirmordred/android_device_samsung_ancora/branches/cm-13.0/libshims "device/samsung/ancora/libshims"
-svn export --force https://github.com/sirmordred/android_device_samsung_ancora/branches/cm-13.0/camera "device/samsung/ancora/camera"
+svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/libshims "device/samsung/ancora/libshims" 
+svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/camera "device/samsung/ancora/camera" 
 
 java -v
-source build/envsetup.sh
 cd ~/android/lineage
+source build/envsetup.sh
 breakfast ancora
 croot
 brunch ancora
