@@ -20,8 +20,7 @@ curl https://raw.githubusercontent.com/mtlive/cm12.1-build-ancora/master/ancora.
 #---
 
 repo sync --quiet 
-source build/envsetup.sh
-cd ~/android/lineage
+
 
 
 #Patches for ancora
@@ -45,7 +44,9 @@ cd ~/android/lineage
 svn export --force https://github.com/sirmordred/android_device_samsung_ancora/branches/cm-13.0/libshims "device/samsung/ancora/libshims"
 svn export --force https://github.com/sirmordred/android_device_samsung_ancora/branches/cm-13.0/camera "device/samsung/ancora/camera"
 
-
+java -v
+source build/envsetup.sh
+cd ~/android/lineage
 breakfast ancora
 croot
 brunch ancora
