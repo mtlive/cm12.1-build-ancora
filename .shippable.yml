@@ -33,6 +33,9 @@ build:
     - sudo add-apt-repository 'deb http://httpredir.debian.org/debian sid main' 
 #    - sudo apt -qq update
     - sudo apt purge openjdk-8*
+    - sudo update-alternatives --remove-all java
+    - sudo update-alternatives --remove-all javac
+    - sudo update-alternatives --remove-all javaws
     - sudo apt install openjdk-7-jdk
     - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
     - export PATH=/usr/lib/jvm/java-7-openjdk-amd64/bin:$PATH
