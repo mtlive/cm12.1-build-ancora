@@ -50,7 +50,7 @@ java -version
 javac -version
 
 cd ~/android/lineage
-sed -i -e '174d' build/core/main.mk #To get rid of false java error
+sed -i -e '197d' build/core/main.mk #To get rid of false java error
 source build/envsetup.sh
 breakfast ancora
 croot
