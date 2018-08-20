@@ -44,8 +44,12 @@ cd ~/android/lineage
 svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/libshims "device/samsung/ancora/libshims" 
 svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/camera "device/samsung/ancora/camera" 
 svn export --force https://github.com/LineageOS/android_external_mm-dash/branches/cm-12.1/dashplayer "hardware/qcom/media-caf/msm7x30/dashplayer"
+
 java -version
+javac -version
+
 cd ~/android/lineage
+sed -e '174d' build/core/main.mk #To get rid of false java error
 source build/envsetup.sh
 breakfast ancora
 croot
