@@ -30,11 +30,11 @@ git config --global user.name "mt"
 cd ~/android/lineage/bionic
 git remote add ancora-bionic git://github.com/RR-msm7x30/android_bionic
 git fetch ancora-bionic
-git merge ancora-bionic/cm-12.1
+git cherry-pick e480e8e 417890d 
 cd ~/android/lineage/frameworks/native
 git remote add ancora-fwnative git://github.com/sirmordred/android_frameworks_native
 git fetch ancora-fwnative
-git merge ancora-fwnative/cm-12.1
+git cherry-pick 10c3798 c3cda27 fd31f18 0c59f3f 
 cd ~/android/lineage/frameworks/base
 curl -O https://github.com/mtlive/cm12.1-build-ancora/raw/master/android_frameworks_base_simple_dialog.patch
 git apply android_frameworks_base_simple_dialog.patch
