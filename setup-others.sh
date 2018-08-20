@@ -38,6 +38,7 @@ cd ~/android/lineage/frameworks/base
 curl -O https://github.com/mtlive/cm12.1-build-ancora/raw/master/android_frameworks_base_simple_dialog.patch
 git am android_frameworks_base_simple_dialog.patch
 cd ~/android/lineage
+sed -i 's/ionAllocData.heap_id_mask/ionAllocData.heap_mask/g' hardware/qcom/display-caf/msm7x30/libgralloc/ionalloc.cpp
 
 #Updating libshims
 #rm -R device/samsung/ancora/libshims/8
