@@ -32,12 +32,11 @@ build:
     - sudo add-apt-repository 'deb http://httpredir.debian.org/debian experimental main' 
     - sudo add-apt-repository 'deb http://httpredir.debian.org/debian sid main' 
 #    - sudo apt -qq update
-    - sudo apt remove openjdk-8-jdk
     - sudo apt install openjdk-7-jdk
     - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
     - export PATH=/usr/lib/jvm/java-7-openjdk-amd64/bin:$PATH
-    - sudo update-alternatives --config java << 1 
-    - sudo update-alternatives --config javac << 1
+    - sudo update-alternatives --set java /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java 
+    - sudo update-alternatives --set javac /usr/lib/jvm/java-7-openjdk-amd64/bin/javac
 
 # getting UberTC
     - git clone  --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
