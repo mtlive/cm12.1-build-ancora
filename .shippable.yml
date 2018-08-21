@@ -52,7 +52,7 @@ build:
     - chmod +x setup-others.sh
     -  (source setup-others.sh ) & sleep 2200 ; kill $!
     - >
-      CACHE_FILE="~/.ccache" && echo "Create cache archive" &&
+      CACHE_FILE="CACHE_FILE="/home/shippable/cache/$PROJECT_CACHE_ARCHIVE" && echo "Create cache archive" &&
       GZIP=-2 tar -czf ~/.ccache &&
       echo "Upload cache archive" &&
       sudo apt-get install -yy jq &&
