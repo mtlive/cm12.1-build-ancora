@@ -50,10 +50,10 @@ build:
     - ccache -M 30G
 #    - export CCACHE_DIR=
     - chmod +x setup-others.sh
-    -  (source setup-others.sh ) & sleep 1800 ; kill $!
+    -  (source setup-others.sh ) & sleep 2200 ; kill $!
     - >
       CACHE_FILE="~/.ccache" && echo "Create cache archive" &&
-      GZIP=-2 tar -czf ${SHIPPABLE_BUILD_DIR}/.ccache &&
+      GZIP=-2 tar -czf ~/.ccache &&
       echo "Upload cache archive" &&
       sudo apt-get install -yy jq &&
       artifact_url=$(curl -s --connect-timeout 60 --max-time 120 -XGET "$SHIPPABLE_API_URL/projects/$PROJECT_ID/artifactUrl?artifactName=$PROJECT_CACHE_ARCHIVE" -H authorization:"apiToken $API_TOKEN_FOR_CACHE_UPLOAD" | jq -r '.put') &&
