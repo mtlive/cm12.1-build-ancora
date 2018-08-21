@@ -35,14 +35,14 @@ git remote add ancora-fwnative git://github.com/sirmordred/android_frameworks_na
 git fetch ancora-fwnative
 git cherry-pick 10c3798 c3cda27 fd31f18 0c59f3f 
 cd ~/android/lineage/frameworks/base
-curl -O https://github.com/mtlive/cm12.1-build-ancora/raw/master/android_frameworks_base_simple_dialog.patch
+curl -O https://raw.githubusercontent.com/mtlive/cm12.1-build-ancora/master/android_frameworks_base_simple_dialog.patch
 git am android_frameworks_base_simple_dialog.patch
 cd ~/android/lineage/hardware/qcom/display-caf/msm7x30
 git revert 14c090d531ef2acaaaf99c3388241ccd1cab597f
 cd ~/android/lineage
 sed -i 's/ionAllocData.heap_id_mask/ionAllocData.heap_mask/g' hardware/qcom/display-caf/msm7x30/libgralloc/ionalloc.cpp
 sed -i 's/alloc_data.heap_id_mask/alloc_data.heap_mask/g' hardware/qcom/audio-caf/msm7x30/legacy/AudioHardware.cpp
-sed -i  's/common_cflags :=/common_cflags := -fno-permissive/' hardware/qcom/audio-caf/msm7x30/legacy/Android.mk 
+sed -i  's/common_cflags\s:=/common_cflags\s:=\s-fno-permissive/' hardware/qcom/audio-caf/msm7x30/legacy/Android.mk 
 
 #Updating libshims
 #rm -R device/samsung/ancora/libshims/8
@@ -54,7 +54,6 @@ java -version
 javac -version
 
 cd ~/android/lineage
-sed -i -e '174d;196d;197d' build/core/main.mk #To get rid of false java error
 source build/envsetup.sh
 breakfast ancora
 croot
