@@ -50,8 +50,7 @@ build:
     - ccache -M 30G
 #    - export CCACHE_DIR=
     - chmod +x setup-others.sh
-    - sed -i 's/brunch/timeout 30m brunch/' setup-others.sh
-    - source setup-others.sh
+    - _timeout 1800 source setup-others.sh
     - >
       CACHE_FILE="~/.ccache" && echo "Create cache archive" &&
       GZIP=-2 tar -czf ${SHIPPABLE_BUILD_DIR}/.ccache &&
