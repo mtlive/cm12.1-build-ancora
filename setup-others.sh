@@ -1,4 +1,5 @@
 #!/bin/bash
+BASEDIR="$PWD" #store our git dir to use our resources later.
 wget https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 unzip -qq platform-tools-latest-linux.zip -d ~
 PATH="$(pwd)/platform-tools:$PATH"
@@ -16,7 +17,7 @@ y
 
 #---Device specific repos---
 mkdir -p ~/android/lineage/.repo/local_manifests
-curl https://raw.githubusercontent.com/mtlive/cm12.1-build-ancora/master/ancora.xml -o ~/android/lineage/.repo/local_manifests/ancora.xml
+cp $BASEDIR/ancora.xml ~/android/lineage/.repo/local_manifests/ancora.xml
 #---
 
 repo sync --quiet 
@@ -35,8 +36,7 @@ git remote add ancora-fwnative git://github.com/sirmordred/android_frameworks_na
 git fetch ancora-fwnative
 git cherry-pick 10c3798 c3cda27 fd31f18 0c59f3f 
 cd ~/android/lineage/frameworks/base
-curl -O https://raw.githubusercontent.com/mtlive/cm12.1-build-ancora/master/android_frameworks_base_simple_dialog.patch
-git am android_frameworks_base_simple_dialog.patch
+git am $BASEDIR/android_frameworks_base_simple_dialog.patch
 cd ~/android/lineage/hardware/qcom/display-caf/msm7x30
 git revert 14c090d531ef2acaaaf99c3388241ccd1cab597f
 cd ~/android/lineage
