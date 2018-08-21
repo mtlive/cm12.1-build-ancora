@@ -42,7 +42,7 @@ git revert 14c090d531ef2acaaaf99c3388241ccd1cab597f
 cd ~/android/lineage
 sed -i 's/ionAllocData.heap_id_mask/ionAllocData.heap_mask/g' hardware/qcom/display-caf/msm7x30/libgralloc/ionalloc.cpp
 sed -i 's/alloc_data.heap_id_mask/alloc_data.heap_mask/g' hardware/qcom/audio-caf/msm7x30/legacy/AudioHardware.cpp
-sed -i  's/common_cflags\s:=/common_cflags\s:=\s-fno-permissive/' hardware/qcom/audio-caf/msm7x30/legacy/Android.mk 
+sed -i  's/common_cflags\s:=/common_cflags := -fno-permissive/' hardware/qcom/audio-caf/msm7x30/legacy/Android.mk 
 
 #Updating libshims
 #rm -R device/samsung/ancora/libshims/8
