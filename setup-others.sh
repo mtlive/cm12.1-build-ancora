@@ -45,7 +45,7 @@ cd ~/android/lineage/hardware/qcom/media-caf/msm7x30
 git fetch --unshallow msm7x30
 git revert 14c090d 
 cd ~/android/lineage
-sed -i 's/utf16_to_utf8(str,\slen,\s(char*)\sdata);/utf16_to_utf8(str, len, (char*) data, len + 1);/g' hardware/qcom/media-caf/msm7x30/dashplayer/DashPlayerDriver.cpp  
+sed -i 's/utf16_to_utf8(str,\slen,\s(char*)\sdata)/utf16_to_utf8(str, len, (char*) data, len + 1)/g' hardware/qcom/media-caf/msm7x30/dashplayer/DashPlayerDriver.cpp  
  
 #Updating libshims
 #rm -R device/samsung/ancora/libshims/8
