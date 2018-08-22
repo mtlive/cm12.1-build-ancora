@@ -22,8 +22,6 @@ cp $BASEDIR/ancora.xml ~/android/lineage/.repo/local_manifests/ancora.xml
 
 repo sync --quiet 
 
-
-
 #Patches for ancora
 git config --global user.email "you@example.com"
 git config --global user.name "mt"
@@ -38,15 +36,15 @@ git cherry-pick 10c3798 c3cda27 fd31f18 0c59f3f
 cd ~/android/lineage/frameworks/base
 git am $BASEDIR/android_frameworks_base_simple_dialog.patch
 cd ~/android/lineage/hardware/qcom/display-caf/msm7x30
-cat .git/config
-git fetch --unshallow msm7x30
-git revert 14c090d531ef2acaaaf99c3388241ccd1cab597f
+git fetch --unshallow --all 
+git revert 2bfbf21
 cd ~/android/lineage/hardware/qcom/audio-caf/msm7x30
-git fetch --unshallow msm7x30
+git fetch --unshallow --all 
 git revert bc183a482dee3a54e0415fff64893da6f6bcacb7
+cd ~/android/lineage/hardware/qcom/media-caf/msm7x30
+git fetch --unshallow --all 
+git revert 14c090d 
 cd ~/android/lineage
-sed -i 's/ionAllocData.heap_id_mask/ionAllocData.heap_mask/g' hardware/qcom/display-caf/msm7x30/libgralloc/ionalloc.cpp
-sed -i 's/alloc_data.heap_id_mask/alloc_data.heap_mask/g' hardware/qcom/audio-caf/msm7x30/legacy/AudioHardware.cpp
  
 
 #Updating libshims
