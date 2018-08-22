@@ -39,10 +39,10 @@ cd ~/android/lineage/frameworks/base
 git am $BASEDIR/android_frameworks_base_simple_dialog.patch
 cd ~/android/lineage/hardware/qcom/display-caf/msm7x30
 cat .git/config
-git fetch --unshallow "msm7x30/android_hardware_qcom_display"
+git fetch --unshallow msm7x30
 git revert 14c090d531ef2acaaaf99c3388241ccd1cab597f
 cd ~/android/lineage/hardware/qcom/audio-caf/msm7x30
-git fetch --unshallow "msm7x30/android_hardware_qcom_audio"
+git fetch --unshallow msm7x30
 git revert bc183a482dee3a54e0415fff64893da6f6bcacb7
 cd ~/android/lineage
 sed -i 's/ionAllocData.heap_id_mask/ionAllocData.heap_mask/g' hardware/qcom/display-caf/msm7x30/libgralloc/ionalloc.cpp
