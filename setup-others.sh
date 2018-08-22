@@ -38,10 +38,10 @@ git cherry-pick 10c3798 c3cda27 fd31f18 0c59f3f
 cd ~/android/lineage/frameworks/base
 git am $BASEDIR/android_frameworks_base_simple_dialog.patch
 cd ~/android/lineage/hardware/qcom/display-caf/msm7x30
-git pull --unshallow
+git fetch --unshallow
 git revert 14c090d531ef2acaaaf99c3388241ccd1cab597f
 cd ~/android/lineage/hardware/qcom/audio-caf/msm7x30
-git pull --unshallow
+git fetch --unshallow
 git revert bc183a482dee3a54e0415fff64893da6f6bcacb7
 cd ~/android/lineage
 sed -i 's/ionAllocData.heap_id_mask/ionAllocData.heap_mask/g' hardware/qcom/display-caf/msm7x30/libgralloc/ionalloc.cpp
