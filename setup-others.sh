@@ -38,12 +38,15 @@ git cherry-pick 10c3798 c3cda27 fd31f18 0c59f3f
 cd ~/android/lineage/frameworks/base
 git am $BASEDIR/android_frameworks_base_simple_dialog.patch
 cd ~/android/lineage/hardware/qcom/display-caf/msm7x30
-git fetch
+git pull --unshallow
 git revert 14c090d531ef2acaaaf99c3388241ccd1cab597f
+cd ~/android/lineage/hardware/qcom/audio-caf/msm7x30
+git pull --unshallow
+git revert bc183a482dee3a54e0415fff64893da6f6bcacb7
 cd ~/android/lineage
 sed -i 's/ionAllocData.heap_id_mask/ionAllocData.heap_mask/g' hardware/qcom/display-caf/msm7x30/libgralloc/ionalloc.cpp
 sed -i 's/alloc_data.heap_id_mask/alloc_data.heap_mask/g' hardware/qcom/audio-caf/msm7x30/legacy/AudioHardware.cpp
-sed -i  's/common_cflags\s:=/common_cflags := -fno-permissive/' hardware/qcom/audio-caf/msm7x30/legacy/Android.mk 
+ 
 
 #Updating libshims
 #rm -R device/samsung/ancora/libshims/8
