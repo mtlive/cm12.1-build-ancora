@@ -45,13 +45,12 @@ cd ~/android/lineage/hardware/qcom/media-caf/msm7x30
 git fetch --unshallow msm7x30
 git revert 14c090d 
 cd ~/android/lineage
+sed -i 's/utf16_to_utf8(str,\slen,\s(char*)\sdata);/utf16_to_utf8(str, len, (char*) data, len + 1);/g' hardware/qcom/media-caf/msm7x30/dashplayer/DashPlayerDriver.cpp  
  
-
 #Updating libshims
 #rm -R device/samsung/ancora/libshims/8
 svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/libshims "device/samsung/ancora/libshims" 
 svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/camera "device/samsung/ancora/camera" 
-svn export --force https://github.com/LineageOS/android_external_mm-dash/branches/cm-12.1/dashplayer "hardware/qcom/media-caf/msm7x30/dashplayer"
 
 java -version
 javac -version
