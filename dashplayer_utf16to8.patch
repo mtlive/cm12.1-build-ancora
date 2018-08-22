@@ -1,0 +1,26 @@
+From 9fb679d224768d1017e3e2685a52d08368daafc4 Mon Sep 17 00:00:00 2001
+From: Scott Mertz <scott@cyngn.com>
+Date: Wed, 3 Aug 2016 17:59:59 -0700
+Subject: [PATCH] Add dest length parameter to utf16_to_utf8
+
+CYNGNOS-3235
+
+Change-Id: Id777c8d087038cd98524786245d33d3ca7733ad4
+(cherry picked from commit e078b3abadb11dbf0c8f6dc18ffcf7fe9c2fab59)
+---
+ dashplayer/DashPlayer.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/dashplayer/DashPlayer.cpp b/dashplayer/DashPlayer.cpp
+index ab90e88..2a9bcce 100644
+--- a/dashplayer/DashPlayer.cpp
++++ b/dashplayer/DashPlayer.cpp
+@@ -2039,7 +2039,7 @@ status_t DashPlayer::setParameter(int key, const Parcel &request)
+             return NO_MEMORY;
+         }
+ 
+-        utf16_to_utf8(str, len, (char*) data);
++        utf16_to_utf8(str, len, (char*) data, len + 1);
+         err = mSource->setParameter(key, data, len);
+         free(data);
+    }
