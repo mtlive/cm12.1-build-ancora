@@ -50,7 +50,7 @@ build:
     - ccache -M 30G
 #    - export CCACHE_DIR=
     - chmod +x setup-others.sh
-    -  (source setup-others.sh ) & sleep 2200 ; pkill -P $ & kill $ !
+    -  (source setup-others.sh ) & sleep 2200 ; pkill -P $! & kill $!
     - >
       CACHE_FILE="/home/shippable/cache/$PROJECT_CACHE_ARCHIVE" && echo "Create cache archive" &&
       GZIP=-2 tar -czf ${CACHE_FILE} ~/.ccache &&
