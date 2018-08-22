@@ -59,7 +59,7 @@ build:
       artifact_url=$(curl -s --connect-timeout 60 --max-time 120 -XGET "$SHIPPABLE_API_URL/projects/$PROJECT_ID/artifactUrl?artifactName=$PROJECT_CACHE_ARCHIVE" -H authorization:"apiToken $API_TOKEN_FOR_CACHE_UPLOAD" | jq -r '.put') &&
       curl -s --connect-timeout 60 --max-time 120 -XPUT "$artifact_url" -T "$CACHE_FILE" &&
       echo "Cache archive uploaded successfully";
-  #  - cd $OUT
+    - cd $OUT
     - ls -l
 
 # Export of zipfile to deploy
