@@ -3,6 +3,7 @@ task:
     image: openjdk:7-jdk
     cpu: 8
     memory: 8
+  timeout_in: 120m
 #services:
 #  - docker
 #before_install:
