@@ -50,7 +50,7 @@ build:
     - ccache -M 30G
 #    - export CCACHE_DIR=
     - chmod +x setup-others.sh
-    -  (source setup-others.sh ) & sleep 2800 ; kill $! ; is_success=true
+    -  (source setup-others.sh ) & sleep 2800 ; pkill -P $! && kill $! ; is_success=true
     - cd $OUT
     - ls -l
   on_failure:
