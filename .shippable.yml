@@ -55,11 +55,12 @@ build:
     - ls -l
   on_failure:
     - >
-      CACHE_FILE="/home/shippable/cache/$PROJECT_CACHE_ARCHIVE" && echo "Create cache archive" &&
-      GZIP=-2 tar -czf ${CACHE_FILE} ~/.ccache &&
+      echo "Create cache archive" &&
+      GZIP=-2 tar -czf /home/shippable/cache/$PROJECT_CACHE_ARCHIVE ~/.ccache &&
       echo "Upload cache archive" &&
-      artifact_url=$(curl -s --connect-timeout 60 --max-time 120 -XGET "$SHIPPABLE_API_URL/projects/$PROJECT_ID/artifactUrl?artifactName=$PROJECT_CACHE_ARCHIVE" -H authorization:"apiToken $API_TOKEN_FOR_CACHE_UPLOAD" | jq -r '.put') &&
-      curl -s --connect-timeout 60 --max-time 120 -XPUT "$artifact_url" -T "$CACHE_FILE" &&
+      get_artifact_url="curl -s  --connect-timeout 60 --max-time 120 -XGET '$SHIPPABLE_API_URL/projects/$PROJECT_ID/artifactUrl?artifactName=$PROJECT_CACHE_ARCHIVE' -H authorization:'apiToken $SHIPPABLE_API_TOKEN'" &&
+      artifact_url=$(eval $get_artifact_url | jq -r '.put') &&
+      curl -s --connect-timeout 60 --max-time 120 -XPUT '$artifact_url' -T '$CACHE_FILE' &&
       echo "Cache archive uploaded successfully";
 
 # Export of zipfile to deploy
