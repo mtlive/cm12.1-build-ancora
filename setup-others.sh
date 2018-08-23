@@ -59,5 +59,5 @@ cd ~/android/lineage
 source build/envsetup.sh
 breakfast ancora
 croot
-( brunch ancora ) & sleep 2400 ; kill $!
+brunch ancora
 
