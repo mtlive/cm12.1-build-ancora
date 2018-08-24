@@ -175,15 +175,15 @@
     <bool name="config_allowAllRotations">true</bool>
     
     <!-- If there is no sysfs-based control mechanism, enable this -->
-     <add-resource type=bool name="useCameraInterface"></add-resource>
+     <add-resource type="bool" name="useCameraInterface"></add-resource>
      <bool name="useCameraInterface">false</bool>
      <!-- Full path to the sysfs toggle -->
-     <add-resource type=string name="flashDevice"></add-resource>
+     <add-resource type="string" name="flashDevice"></add-resource>
      <string name="flashDevice">/sys/class/camera/rear/rear_flash</string>
      <!-- Off setting -->
-     <add-resource type=integer name="valueOff"></add-resource>
+     <add-resource type="integer" name="valueOff"></add-resource>
      <integer name="valueOff">0</integer>
      <!-- On setting -->
-     <add-resource type=integer name="valueOn"></add-resource>
+     <add-resource type="integer" name="valueOn"></add-resource>
      <integer name="valueOn">1</integer>
 </resources>
