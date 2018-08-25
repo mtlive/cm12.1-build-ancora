@@ -30,7 +30,7 @@ task:
 #    - apt  -qq install libfl2
 # getting UberTC
 #    - git clone  --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-7.x" "../arm-eabi-7.x"
-    - export CROSS_COMPILE="$(pwd)/../arm-eabi-7.x/bin/arm-eabi-"
+#    - export CROSS_COMPILE="$(pwd)/../arm-eabi-7.x/bin/arm-eabi-"
     - ldconfig
     - export ARCH=arm && export SUBARCH=arm
 #Fix mesg n stdin: is not a tty
