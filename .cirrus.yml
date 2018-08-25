@@ -1,7 +1,7 @@
 task:
   container:
     image: openjdk:7-jdk
-    cpu: 4
+    cpu: 8
     memory: 10G
   timeout_in: 200m
   c_cache:
@@ -29,26 +29,22 @@ task:
 #    - apt-get  -qq update 
 #    - apt  -qq install libfl2
 # getting UberTC
-    - git clone  --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-7.x" "../arm-eabi-7.x"
+#    - git clone  --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-7.x" "../arm-eabi-7.x"
     - export CROSS_COMPILE="$(pwd)/../arm-eabi-7.x/bin/arm-eabi-"
     - ldconfig
-#- source build.sh <<< "${nbasebuildsh}"
     - export ARCH=arm && export SUBARCH=arm
 #Fix mesg n stdin: is not a tty
     - sed -i '/mesg[[:space:]]n/d' ~/.profile
     - cat .profile >> ~/.profile
+    
     - chmod +x setup-others.sh
-    - ./setup-others.sh
+    - timeout 110m ./setup-others.sh
     - cd ~/android/lineage/out
     - ls -l
 
 #- make clean && make mrproper 
 #- make ancora_oc_exuv_defconfig 
 #- make -j 4 V=1
-
-
-# Export of zipfile to deploy
-#- export zipfile="${zipfile}"
 
 deploy:
   provider: releases
