@@ -4,6 +4,8 @@ task:
     cpu: 4
     memory: 8G
   timeout_in: 200m
+  c_cache:
+    folder: ~/.ccache
 #services:
 #  - docker
 #before_install:
