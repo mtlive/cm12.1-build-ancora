@@ -38,7 +38,7 @@ task:
     - cat .profile >> ~/.profile
     
     - chmod +x setup-others.sh
-    - timeout 110m ./setup-others.sh
+    - timeout 113m ./setup-others.sh && echo "Timeout"
     - cd ~/android/lineage/out
     - ls -l
 
