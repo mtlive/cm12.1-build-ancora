@@ -40,7 +40,7 @@ task:
     - sed -i '/mesg[[:space:]]n/d' ~/.profile
     - cat .profile >> ~/.profile
     - chmod +x setup-others.sh
-    - timeout 100m ./setup-others.sh && echo "Timeout"
+    - timeout 85m ./setup-others.sh && echo "Timeout"
     - cd ~/android/lineage/out/target
     - ls -R
 
