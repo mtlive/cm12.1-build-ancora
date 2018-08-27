@@ -42,7 +42,8 @@ task:
     - chmod +x setup-others.sh
     - timeout 85m ./setup-others.sh && echo "Timeout"
     - cd ~/android/lineage/out/target
-    - ls -R
+    - ls -l
+    - ls ancora
 
 #- make clean && make mrproper 
 #- make ancora_oc_exuv_defconfig 
