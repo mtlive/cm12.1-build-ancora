@@ -6,7 +6,7 @@ task:
   timeout_in: 200m
   c_cache:
     folder: ~/.ccache
-    populate_script: apt -qq install -y ccache
+    populate_script: apt-get update && apt-get -qq install -y ccache
 #services:
 #  - docker
 #before_install:
@@ -41,7 +41,7 @@ task:
     - cat .profile >> ~/.profile
     - chmod +x setup-others.sh
     - (timeout 111m ./setup-others.sh ; echo "Timeout")
-    - cd ~/android/lineage/out
+    - cd ~/android/lineage/out/target
     - ls -l
 
 #- make clean && make mrproper 
