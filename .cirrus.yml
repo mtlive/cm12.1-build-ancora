@@ -6,7 +6,7 @@ task:
   timeout_in: 200m
   c_cache:
     folder: ~/.ccache
-    populate_script: apt-get -qq install ccache
+    populate_script: apt -qq install -y ccache
 #services:
 #  - docker
 #before_install:
