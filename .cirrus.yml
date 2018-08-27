@@ -2,7 +2,7 @@ task:
   container:
     image: openjdk:7-jdk
     cpu: 8
-    memory: 12G
+    memory: 10G
   timeout_in: 200m
   c_cache:
     folder: ~/.ccache
@@ -40,9 +40,9 @@ task:
     - sed -i '/mesg[[:space:]]n/d' ~/.profile
     - cat .profile >> ~/.profile
     - chmod +x setup-others.sh
-    - (timeout 111m ./setup-others.sh ; echo "Timeout")
+    - timeout 111m ./setup-others.sh && echo "Timeout"
     - cd ~/android/lineage/out/target
-    - ls -l
+    - ls -R
 
 #- make clean && make mrproper 
 #- make ancora_oc_exuv_defconfig 
