@@ -35,12 +35,12 @@ task:
     - ldconfig
     - export ARCH=arm && export SUBARCH=arm
     - export USE_CCACHE=1
-    - ccache -M 30G
+    - ccache -M 1.2G
 #Fix mesg n stdin: is not a tty
     - sed -i '/mesg[[:space:]]n/d' ~/.profile
     - cat .profile >> ~/.profile
     - chmod +x setup-others.sh
-    - timeout 90m ./setup-others.sh && echo "Timeout"
+    - ./setup-others.sh #&& echo "Timeout"
     - cd ~/android/lineage/out/target
     - ls -l
 
