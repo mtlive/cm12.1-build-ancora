@@ -40,10 +40,9 @@ task:
     - sed -i '/mesg[[:space:]]n/d' ~/.profile
     - cat .profile >> ~/.profile
     - chmod +x setup-others.sh
-    - timeout 85m ./setup-others.sh && echo "Timeout"
+    - timeout 90m ./setup-others.sh && echo "Timeout"
     - cd ~/android/lineage/out/target
     - ls -l
-    - ls ancora
 
 #- make clean && make mrproper 
 #- make ancora_oc_exuv_defconfig 
