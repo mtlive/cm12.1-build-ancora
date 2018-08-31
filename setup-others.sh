@@ -49,8 +49,8 @@ sed -i 's/utf16_to_utf8(str,\slen,\s(char\*)\sdata)/utf16_to_utf8(str, len, (cha
 sed -i 's/#\sCamera/# Camera\'$'\nBOARD_USES_LEGACY_OVERLAY := true/g' device/samsung/ancora/BoardConfig.mk
 cp -f $BASEDIR/config.xml device/samsung/ancora/overlay/frameworks/base/core/res/res/values/
 #Using our prebuilt kernel
-curl -L https://github.com/mtlive/samsung-kernel-msm7x30-1/releases/download/untagged-e4fbafdaaeb41077aa35/zImage -o device/samsung/ancora/prebuilt/zImage
-export TARGET_PREBUILT_KERNEL= device/samsung/ancora/prebuilt/zImage 
+curl -L https://github.com/mtlive/samsung-kernel-msm7x30-1/releases/download/untagged-e4fbafdaaeb41077aa35/zImage -o device/samsung/ancora/zImage
+export TARGET_PREBUILT_KERNEL= device/samsung/ancora/zImage 
 sed -i '65d' device/samsung/ancora/BoardConfig.mk
 #Updating libshims
 #rm -R device/samsung/ancora/libshims/8
