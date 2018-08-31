@@ -47,8 +47,10 @@ git revert 14c090d
 cd ~/android/lineage
 sed -i 's/utf16_to_utf8(str,\slen,\s(char\*)\sdata)/utf16_to_utf8(str, len, (char*) data, len + 1)/g' hardware/qcom/media-caf/msm7x30/dashplayer/DashPlayer.cpp   
 sed -i 's/#\sCamera/# Camera\'$'\nBOARD_USES_LEGACY_OVERLAY := true/g' device/samsung/ancora/BoardConfig.mk
-cp -f $BASEDIR/config.xml device/samsung/ancora/overlay/frameworks/base/core/res/res/values/ 
- 
+cp -f $BASEDIR/config.xml device/samsung/ancora/overlay/frameworks/base/core/res/res/values/
+#Using our prebuilt kernel
+curl -L https://github.com/mtlive/samsung-kernel-msm7x30-1/releases/download/untagged-e4fbafdaaeb41077aa35/zImage -o device/samsung/ancora/prebuilt/zImage
+export TARGET_PREBUILT_KERNEL= device/samsung/ancora/prebuilt/zImage 
 #Updating libshims
 #rm -R device/samsung/ancora/libshims/8
 svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/libshims "device/samsung/ancora/libshims" 
