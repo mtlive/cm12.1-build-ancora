@@ -50,8 +50,8 @@ sed -i 's/#\sCamera/# Camera\'$'\nBOARD_USES_LEGACY_OVERLAY := true/g' device/sa
 cp -f $BASEDIR/config.xml device/samsung/ancora/overlay/frameworks/base/core/res/res/values/
 #Using our prebuilt kernel
 curl -L https://github.com/mtlive/samsung-kernel-msm7x30-1/releases/download/untagged-f36e032f95b728827d2a/zImage -o device/samsung/ancora/zImage
+export TARGET_PREBUILT_KERNEL="device/samsung/ancora/zImage" 
 sed -i '65d' device/samsung/ancora/BoardConfig.mk
-sed -i 's/#\sKernel/# Kernel\'$'\nTARGET_PREBUILT_KERNEL= device/samsung/ancora/zImage/g' device/samsung/ancora/BoardConfig.mk
 #Updating libshims
 #rm -R device/samsung/ancora/libshims/8
 svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/libshims "device/samsung/ancora/libshims" 
