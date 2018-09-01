@@ -1,4 +1,4 @@
-task:
+build_task:
   container:
     image: openjdk:7-jdk
     cpu: 8
@@ -46,6 +46,8 @@ task:
     - ls -l
  
 publish_task:
+  depends_on: 
+    - build
   environment:
    AUTH_TOKEN: ENCRYPTED[7fd3fbd1f11a828ebde512294486d28def548987c0b3c5934b3bbb7a87e2cf50fa84ae084b0ea99f04961c0633488156]
   publish_script:
