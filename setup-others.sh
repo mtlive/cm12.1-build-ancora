@@ -53,8 +53,6 @@ curl -L https://github.com/mtlive/samsung-kernel-msm7x30-1/releases/download/unt
 export TARGET_PREBUILT_KERNEL="device/samsung/ancora/zImage" 
 sed -i '65d' device/samsung/ancora/BoardConfig.mk
 printf '\n PRODUCT_COPY_FILES += $(TARGET_PREBUILT_KERNEL):kernel\n' >> device/samsung/ancora/BoardConfig.mk
-cat $BASEDIR/AndroidBoard.mk >> device/samsung/ancora/BoardConfig.mk
-cp $BASEDIR/AndroidBoard.mk device/samsung/ancora/
 mkdir -p out/target/product/ancora/obj/KERNEL_OBJ/usr
 #Updating libshims
 #rm -R device/samsung/ancora/libshims/8
@@ -68,5 +66,5 @@ cd ~/android/lineage
 source build/envsetup.sh
 breakfast ancora
 croot
-make -j6
+brunch ancora
 
