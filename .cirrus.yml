@@ -45,11 +45,11 @@ task:
     - cd ~/android/lineage/out/target
     - ls -l
  
-  publish_task:
-    environment:
-      AUTH_TOKEN: ENCRYPTED[7fd3fbd1f11a828ebde512294486d28def548987c0b3c5934b3bbb7a87e2cf50fa84ae084b0ea99f04961c0633488156]
-    script:
-    - chmod +x $BASEDIR/upload-release.sh
-    - cd ~/android/lineage/out/target/product/ancora/
-    - for file in *.zip; do ./upload-release.sh github_api_token=$AUTH_TOKEN owner=mtlive repo=cm12.1-build-ancora tag=$(date +%Y-%m-%d) filename=./$file ; done;
+publish_task:
+  environment:
+   AUTH_TOKEN: ENCRYPTED[7fd3fbd1f11a828ebde512294486d28def548987c0b3c5934b3bbb7a87e2cf50fa84ae084b0ea99f04961c0633488156]
+  script:
+   - chmod +x $BASEDIR/upload-release.sh
+   - cd ~/android/lineage/out/target/product/ancora/
+   - for file in *.zip; do ./upload-release.sh github_api_token=$AUTH_TOKEN owner=mtlive repo=cm12.1-build-ancora tag=$(date +%Y-%m-%d) filename=./$file ; done;
 
