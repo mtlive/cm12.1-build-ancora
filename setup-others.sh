@@ -54,7 +54,8 @@ export TARGET_PREBUILT_KERNEL="device/samsung/ancora/zImage"
 sed -i '65d' device/samsung/ancora/BoardConfig.mk
 printf '\n PRODUCT_COPY_FILES += $(TARGET_PREBUILT_KERNEL):kernel\n' >> device/samsung/ancora/BoardConfig.mk
 cat $BASEDIR/AndroidBoard.mk >> device/samsung/ancora/BoardConfig.mk
-mkdir -p out/target/product/hammerhead/obj/KERNEL_OBJ/usr
+cp $BASEDIR/AndroidBoard.mk device/samsung/ancora/
+mkdir -p out/target/product/ancora/obj/KERNEL_OBJ/usr
 #Updating libshims
 #rm -R device/samsung/ancora/libshims/8
 svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/libshims "device/samsung/ancora/libshims" 
