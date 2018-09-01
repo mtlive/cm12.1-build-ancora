@@ -41,21 +41,15 @@ task:
     - sed -i '/mesg[[:space:]]n/d' ~/.profile
     - cat .profile >> ~/.profile
     - chmod +x setup-others.sh
-    - timeout 105m ./setup-others.sh && echo "Timeout"
+    - timeout 116m ./setup-others.sh && echo "Timeout"
     - cd ~/android/lineage/out/target
     - ls -l
-
-#- make clean && make mrproper 
-#- make ancora_oc_exuv_defconfig 
-#- make -j 4 V=1
-
-deploy:
-  provider: releases
-  skip_cleanup: true
-  api_key: ${KEY}
-  file_glob: true
-  file: "~/android/lineage/out/*.zip"
-  on:
-  #  tags: true
-    all_branches: true
+ 
+  publish_task:
+    environment:
+      AUTH_TOKEN: ENCRYPTED[7fd3fbd1f11a828ebde512294486d28def548987c0b3c5934b3bbb7a87e2cf50fa84ae084b0ea99f04961c0633488156]
+    script:
+    - chmod +x $BASEDIR/upload-release.sh
+    - cd ~/android/lineage/out/target/product/ancora/
+    - for file in *.zip; do ./upload-release.sh github_api_token=$AUTH_TOKEN owner=mtlive repo=cm12.1-build-ancora tag=$(date +%Y-%m-%d) filename=./$file ; done;
 
