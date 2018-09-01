@@ -68,5 +68,5 @@ cd ~/android/lineage
 source build/envsetup.sh
 breakfast ancora
 croot
-brunch ancora
+make -j6
 
