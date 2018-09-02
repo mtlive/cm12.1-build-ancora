@@ -56,9 +56,6 @@ export TARGET_PREBUILT_KERNEL="device/samsung/ancora/zImage"
 svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/libshims "device/samsung/ancora/libshims" 
 svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/camera "device/samsung/ancora/camera" 
 
-sed -i '65d' device/samsung/ancora/BoardConfig.mk  
-mkdir -p out/target/product/ancora/obj/KERNEL_OBJ/usr 
-
 java -version
 javac -version
 
