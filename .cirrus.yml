@@ -41,7 +41,6 @@ task:
     - sed -i '/mesg[[:space:]]n/d' ~/.profile
     - cat .profile >> ~/.profile
     - chmod +x setup-others.sh
-    - ccache -C -z
     - ./setup-others.sh && echo "Timeout"
     - ls -l
   environment:
