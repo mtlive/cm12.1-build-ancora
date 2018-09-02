@@ -35,7 +35,7 @@ task:
     - ldconfig
     - export ARCH=arm && export SUBARCH=arm
     - export USE_CCACHE=1
-    - export CCACHE_COMPRESS=""
+#    - export CCACHE_COMPRESS=""
     - ccache -M 1.2G
 #Fix mesg n stdin: is not a tty
     - sed -i '/mesg[[:space:]]n/d' ~/.profile
