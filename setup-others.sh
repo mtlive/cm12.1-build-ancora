@@ -51,8 +51,6 @@ cp -f $BASEDIR/config.xml device/samsung/ancora/overlay/frameworks/base/core/res
 #Using our prebuilt kernel
 curl -L https://github.com/mtlive/samsung-kernel-msm7x30-1/releases/download/untagged-f36e032f95b728827d2a/zImage -o device/samsung/ancora/zImage
 export TARGET_PREBUILT_KERNEL="device/samsung/ancora/zImage" 
-sed -i '66d' device/samsung/ancora/BoardConfig.mk
-mkdir -p out/target/product/ancora/obj/KERNEL_OBJ/usr
 
 #Updating libshims
 #rm -R device/samsung/ancora/libshims/8
