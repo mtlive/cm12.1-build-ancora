@@ -5,7 +5,7 @@ task:
     memory: 12G
   timeout_in: 190m
   c_cache:
-    folder: ~/.ccache
+#    folder: ~/.ccache
     populate_script: apt-get update && apt-get -qq install -y ccache
 #services:
 #  - docker
@@ -34,7 +34,7 @@ task:
 #Fix mesg n stdin: is not a tty
     - sed -i '/mesg[[:space:]]n/d' ~/.profile
     - cat .profile >> ~/.profile
-    - chmod +x setup-others.sh
+    - chmod +x build-chromium.sh
     - timeout 115m ./build-chromium.sh && echo "Timeout"
     - ls -l
   environment:
