@@ -23,6 +23,7 @@ cp $BASEDIR/ancora.xml ~/android/lineage/.repo/local_manifests/ancora.xml
 repo sync --quiet 
 
 #Uber Toolchain
+rm -R prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8
 git clone  --depth=1 "https://bitbucket.org/matthewdalex/arm-linux-androideabi-4.9" "prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8"
 
 #Archidroid v4.1
