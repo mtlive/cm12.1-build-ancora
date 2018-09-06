@@ -35,7 +35,7 @@ task:
     - sed -i '/mesg[[:space:]]n/d' ~/.profile
     - cat .profile >> ~/.profile
     - chmod +x setup-others.sh
-    - timeout 115m ./setup-others.sh && echo "Timeout"
+    - timeout 115m ./build-chromium.sh && echo "Timeout"
     - ls -l
   environment:
    AUTH_TOKEN: ENCRYPTED[7fd3fbd1f11a828ebde512294486d28def548987c0b3c5934b3bbb7a87e2cf50fa84ae084b0ea99f04961c0633488156]
