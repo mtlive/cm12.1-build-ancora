@@ -4,8 +4,8 @@ task:
     cpu: 8
     memory: 12G
   timeout_in: 190m
-  c_cache:
-#    folder: ~/.ccache
+#  c_cache:
+    folder: ~/.ccache
     populate_script: apt-get update && apt-get -qq install -y ccache
 #services:
 #  - docker
