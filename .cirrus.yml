@@ -43,5 +43,5 @@ task:
    - chmod +x upload-release.sh
    - cp upload-release.sh ~/android/lineage/out/target/product/ancora/
    - cd ~/android/lineage/out/target/product/ancora/
-   - for file in *.zip; do ./upload-release.sh github_api_token=$AUTH_TOKEN owner=mtlive repo=cm12.1-build-ancora tag=$(date +%Y-%m-%d) filename=./$file ; done;
+  # - for file in *.zip; do ./upload-release.sh github_api_token=$AUTH_TOKEN owner=mtlive repo=cm12.1-build-ancora tag=$(date +%Y-%m-%d) filename=./$file ; done;
 
