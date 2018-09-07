@@ -19,6 +19,7 @@ task:
     - apt-get -qq install software-properties-common
     - apt-get  -qq install -y dpkg bc bison build-essential ccache curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev subversion git > /dev/null
     - add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ bionic main"
+    - apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
     - apt-get  -qq update 
     - apt  -qq install -y libfl2 > /dev/null
 #    - add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ bionic main"
