@@ -52,10 +52,7 @@ cp -f $BASEDIR/config.xml device/samsung/ancora/overlay/frameworks/base/core/res
 curl -L https://github.com/mtlive/samsung-kernel-msm7x30-1/releases/download/untagged-f36e032f95b728827d2a/zImage -o device/samsung/ancora/zImage
 export TARGET_PREBUILT_KERNEL="device/samsung/ancora/zImage" 
 
-#Updating libshims
-#rm -R device/samsung/ancora/libshims/8
-svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/libshims "device/samsung/ancora/libshims" 
-svn export --force https://github.com/doadin/android_device_samsung_ancora_tmo/branches/cm-12.1_ion_pmem-libshim/camera "device/samsung/ancora/camera" 
+#Revert libshims
 
 java -version
 javac -version
@@ -64,5 +61,5 @@ cd ~/android/lineage
 source build/envsetup.sh
 breakfast ancora
 croot
-make clean && make -j4 recoveryimage #brunch ancora
+make clean && mka recoveryimage #brunch ancora
 
