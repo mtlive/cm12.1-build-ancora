@@ -64,5 +64,5 @@ cd ~/android/lineage
 source build/envsetup.sh
 breakfast ancora
 croot
-brunch ancora
+make clean && make -j4 recoveryimage #brunch ancora
 
