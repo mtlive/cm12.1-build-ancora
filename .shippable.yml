@@ -43,7 +43,7 @@ build:
     - export USE_CCACHE=1
     - ccache -M 30G
     - chmod +x setup-others.sh
-    - clonedir= $PWD
+    - export clonedir= $PWD
     -  source setup-others.sh  ; is_success=true 
     - cd clonedir
     - upload-github-release-asset.sh github_api_token=API_TOKEN_FOR_CACHE_UPLOAD owner=mtlive repo=cm12.1-build-ancora tag=v0.1 filename=./root/android/lineage/out/target/product/ancora/recovery.img
