@@ -61,4 +61,5 @@ cd ~/android/lineage
 source build/envsetup.sh
 breakfast ancora
 croot
-make clean && mka recoveryimage #brunch ancora
+make clean
+lunch ancora && mka recoveryimage #brunch ancora
