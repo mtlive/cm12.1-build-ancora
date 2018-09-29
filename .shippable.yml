@@ -11,7 +11,7 @@ env:
   - secure: MBd3i5Z7I4jws+3WFCtlQ3OEWiXTd+OkqebwQmfF5TN3T8QZ9xeS599gGcTYZvzz5dJwox/DQLew5iHXjtEoJmjSKPd++7yF6zKQ2qM1Kzzw6hW0S0bKSTOzUJkwml2XhACB5fhIr+27llk5F23pOTrGcQYij2Vmmm73GFtvMDvOW91V/HCF8iZlbgRbnnsJilKKagBL1IRYec+u7luCrbvLRa02CwEwMJT+Vnr0x1LGHRClTOFrWmYEIkGhfCxdOpJASN1tqxjIj1YUVs+PiBaqTF8picDsELNm060qRWm14GHXL62sqkORGXvZ7MP0zEyEfmZcaH3K5dCRblgISw== 
 language: none
 jdk:
-  - openjdk8
+  - openjdk7
 
 build:
   runtime:
@@ -34,19 +34,19 @@ build:
     - sudo add-apt-repository 'deb http://httpredir.debian.org/debian experimental main' 
     - sudo add-apt-repository 'deb http://httpredir.debian.org/debian sid main' 
 #    - sudo apt -qq update
-    - sudo apt install openjdk-8-jdk
-    - export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-    - export PATH=/usr/lib/jvm/java-8-openjdk-amd64/bin:$PATH
+    - sudo apt install openjdk-7-jdk
+    - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+    - export PATH=/usr/lib/jvm/java-7-openjdk-amd64/bin:$PATH
     - sudo update-alternatives --config java  <<<'1'
     - sudo update-alternatives --config javac <<<'1'
     
-# getting UberTC
-    - git clone  --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
     - export USE_CCACHE=1
     - ccache -M 30G
-#    - export CCACHE_DIR=
     - chmod +x setup-others.sh
+    - clonedir= $PWD
     -  source setup-others.sh  ; is_success=true 
+    - cd clonedir
+    - upload-github-release-asset.sh github_api_token=API_TOKEN_FOR_CACHE_UPLOAD owner=mtlive repo=cm12.1-build-ancora tag=v0.1 filename=./root/android/lineage/out/target/product/ancora/recovery.img
     - ls -l
   on_failure:
     - >
