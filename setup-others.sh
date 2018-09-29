@@ -47,8 +47,8 @@ git revert 14c090d
 cd ~/android/lineage
 sed -i 's/utf16_to_utf8(str,\slen,\s(char\*)\sdata)/utf16_to_utf8(str, len, (char*) data, len + 1)/g' hardware/qcom/media-caf/msm7x30/dashplayer/DashPlayer.cpp   
 cp -f $BASEDIR/config.xml device/samsung/ancora/overlay/frameworks/base/core/res/res/values/
-echo "TARGET_SCREEN_WIDTH := 480"  >> device/samsung/ancora/BoardConfig.mk
-echo "TARGET_SCREEN_HEIGHT := 800" >> device/samsung/ancora/BoardConfig.mk
+printf "\nTARGET_SCREEN_WIDTH := 480"  >> device/samsung/ancora/BoardConfig.mk
+printf "\nTARGET_SCREEN_HEIGHT := 800\n" >> device/samsung/ancora/BoardConfig.mk
 #Using our prebuilt kernel
 #curl -L https://github.com/mtlive/samsung-kernel-msm7x30-1/releases/download/untagged-f36e032f95b728827d2a/zImage -o device/samsung/ancora/zImage
 #export TARGET_PREBUILT_KERNEL="device/samsung/ancora/zImage" 
