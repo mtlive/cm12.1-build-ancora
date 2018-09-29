@@ -2,7 +2,7 @@
 <manifest>
   
  
-  <remove-project name="LineageOS/android_bootable_recovery"/>
+  
   
   <project path="bootable/recovery" name="RR-msm7x30/android_bootable_recovery" groups="pdk" remote="github" />
   <project path="device/samsung/ancora" name="RR-msm7x30/android_device_samsung_ancora" remote="github" revision="cm-12.1" />
@@ -18,6 +18,8 @@
   <project name="msm7x30/android_hardware_qcom_audio" path="hardware/qcom/audio-caf/msm7x30" remote="msm7x30" revision="cm-12.1-caf-7x30" />
   <project name="msm7x30/android_hardware_qcom_display" path="hardware/qcom/display-caf/msm7x30" remote="msm7x30" revision="cm-12.1-caf-7x30" />
   <project name="msm7x30/android_hardware_qcom_media" path="hardware/qcom/media-caf/msm7x30" remote="msm7x30" revision="cm-12.1-caf-7x30" />
+  
+  <remove-project name="LineageOS/android_bootable_recovery"/>
   <project path="bootable/recovery-twrp" name="omnirom/android_bootable_recovery" remote="github" revision="android-7.1" groups="pdk-cw-fs"/>
 
 </manifest>
