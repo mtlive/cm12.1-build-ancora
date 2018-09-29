@@ -48,9 +48,10 @@ cd ~/android/lineage
 sed -i 's/utf16_to_utf8(str,\slen,\s(char\*)\sdata)/utf16_to_utf8(str, len, (char*) data, len + 1)/g' hardware/qcom/media-caf/msm7x30/dashplayer/DashPlayer.cpp   
 sed -i 's/#\sCamera/# Camera\'$'\nBOARD_USES_LEGACY_OVERLAY := true/g' device/samsung/ancora/BoardConfig.mk
 cp -f $BASEDIR/config.xml device/samsung/ancora/overlay/frameworks/base/core/res/res/values/
-#Using our prebuilt kernel
-curl -L https://github.com/mtlive/samsung-kernel-msm7x30-1/releases/download/untagged-f36e032f95b728827d2a/zImage -o device/samsung/ancora/zImage
-export TARGET_PREBUILT_KERNEL="device/samsung/ancora/zImage" 
+rm -R platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8
+git clone https://bitbucket.org/UBERTC/arm-eabi-4.9 platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8
+rm -R prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8
+git clone https://bitbucket.org/UBERTC/arm-linux-androideabi-4.9 prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8
 
 #Revert libshims
 
