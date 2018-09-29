@@ -42,16 +42,11 @@ build:
     
 # getting UberTC
     - git clone  --depth=1 "https://bitbucket.org/matthewdalex/arm-eabi-${GCC_VERSION}" "../arm-eabi-${GCC_VERSION}"
-    - export CROSS_COMPILE="$(pwd)/../arm-eabi-${GCC_VERSION}/bin/arm-eabi-"
-    - sudo ldconfig
-#- source build.sh <<< "${nbasebuildsh}"
-    - export ARCH=arm && export SUBARCH=arm
     - export USE_CCACHE=1
     - ccache -M 30G
 #    - export CCACHE_DIR=
     - chmod +x setup-others.sh
     -  (source setup-others.sh ) & sleep 2800 ; pkill -P $! && kill $! ; is_success=true 
-    - cd $OUT
     - ls -l
   on_failure:
     - >
