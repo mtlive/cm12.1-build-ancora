@@ -10,7 +10,7 @@ chmod a+x ~/bin/repo
 PATH="$(pwd)/bin:$PATH"
 source ~/.profile
 cd ~/android/lineage
-repo init --depth=1 -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git --quiet -b twrp-7.1  <<!
+repo init --depth=1 -u git://github.com/LineageOS/android.git --quiet -b cm-12.1  <<!
 y
 y
 !
@@ -46,12 +46,11 @@ git fetch --unshallow msm7x30
 git revert 14c090d 
 cd ~/android/lineage
 sed -i 's/utf16_to_utf8(str,\slen,\s(char\*)\sdata)/utf16_to_utf8(str, len, (char*) data, len + 1)/g' hardware/qcom/media-caf/msm7x30/dashplayer/DashPlayer.cpp   
+sed -i 's/#\sCamera/# Camera\'$'\nBOARD_USES_LEGACY_OVERLAY := true/g' device/samsung/ancora/BoardConfig.mk
 cp -f $BASEDIR/config.xml device/samsung/ancora/overlay/frameworks/base/core/res/res/values/
-printf "\nTARGET_SCREEN_WIDTH := 480"  >> device/samsung/ancora/BoardConfig.mk
-printf "\nTARGET_SCREEN_HEIGHT := 800\n" >> device/samsung/ancora/BoardConfig.mk
 #Using our prebuilt kernel
-#curl -L https://github.com/mtlive/samsung-kernel-msm7x30-1/releases/download/untagged-f36e032f95b728827d2a/zImage -o device/samsung/ancora/zImage
-#export TARGET_PREBUILT_KERNEL="device/samsung/ancora/zImage" 
+curl -L https://github.com/mtlive/samsung-kernel-msm7x30-1/releases/download/untagged-f36e032f95b728827d2a/zImage -o device/samsung/ancora/zImage
+export TARGET_PREBUILT_KERNEL="device/samsung/ancora/zImage" 
 
 #Revert libshims
 
@@ -63,4 +62,3 @@ source build/envsetup.sh
 breakfast ancora
 croot
 make clean && mka recoveryimage #brunch ancora
-
