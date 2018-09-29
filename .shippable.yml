@@ -9,6 +9,8 @@ env:
  global:
   - GCC_VERSION=7.x
   - secure: MBd3i5Z7I4jws+3WFCtlQ3OEWiXTd+OkqebwQmfF5TN3T8QZ9xeS599gGcTYZvzz5dJwox/DQLew5iHXjtEoJmjSKPd++7yF6zKQ2qM1Kzzw6hW0S0bKSTOzUJkwml2XhACB5fhIr+27llk5F23pOTrGcQYij2Vmmm73GFtvMDvOW91V/HCF8iZlbgRbnnsJilKKagBL1IRYec+u7luCrbvLRa02CwEwMJT+Vnr0x1LGHRClTOFrWmYEIkGhfCxdOpJASN1tqxjIj1YUVs+PiBaqTF8picDsELNm060qRWm14GHXL62sqkORGXvZ7MP0zEyEfmZcaH3K5dCRblgISw== 
+  - secure: duBsUZepJFAKb6xRaImdlqxRjm4IRjtOWLhQPGM1hUiHaI49j9ndpri52gN60/3Sl4KNSApbpJhkFWl8rNvxSDzLf1FPlnAE68CPTbvgoIMZWgh05hG81wZZrfazKUhvPkwfO52Op7H//WsN5SOzrMqVICoizF/ET+RhW4wv7+f6KkNypISsfgvJLa3H3UIOjNifmgPc4P7iEZpCy0aRCB8IbeyNbolJX4eBdc0KxcYOVqCNIQP7XEPhhtl3ZcR0kvxUwAgDvmDN0qSGmBltBpHBS5Zl76HnPT4GxAPWRKJgVcMUqYNiIeof+Dx+8exlup4nAShMn7j/6IJLE437Xw== 
+
 language: none
 jdk:
   - openjdk7
@@ -43,7 +45,7 @@ build:
     - export USE_CCACHE=1
     - ccache -M 30G
     - chmod +x setup-others.sh
-    - export clonedir= $PWD
+    - export clonedir=$(pwd)
     -  source setup-others.sh  ; is_success=true 
     - cd clonedir
     - upload-github-release-asset.sh github_api_token=API_TOKEN_FOR_CACHE_UPLOAD owner=mtlive repo=cm12.1-build-ancora tag=v0.1 filename=./root/android/lineage/out/target/product/ancora/recovery.img
