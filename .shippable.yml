@@ -48,7 +48,7 @@ build:
     - export clonedir=$(pwd)
     -  source setup-others.sh  ; is_success=true 
     - cd clonedir
-    - upload-github-release-asset.sh github_api_token=API_TOKEN_FOR_CACHE_UPLOAD owner=mtlive repo=cm12.1-build-ancora tag=v0.1 filename=./root/android/lineage/out/target/product/ancora/recovery.img
+    - upload-github-release-asset.sh github_api_token=GITHUB_TOKEN owner=mtlive repo=cm12.1-build-ancora tag=v0.1 filename=/root/android/lineage/out/target/product/ancora/recovery.img
     - ls -l
   on_failure:
     - >
