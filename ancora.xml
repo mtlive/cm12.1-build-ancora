@@ -5,13 +5,6 @@
   <remove-project name="LineageOS/android_bootable_recovery"/>
   <project path="bootable/recovery-twrp" name="omnirom/android_bootable_recovery" remote="github" revision="android-7.1" groups="pdk-cw-fs"/>
   
-  <remote name="bitbucket" fetch="https://bitbucket.org"/>
-  
-  <remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8"/>
-  <remove-project name="platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8"/>
-  <project path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" name="UBERTC/arm-eabi-4.9" groups="pdk,linux,arm" remote="bitbucket" />
-  <project path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8" name="UBERTC/arm-linux-androideabi-4.9" groups="pdk,linux,arm" remote="bitbucket" />
-  
   <project path="device/samsung/ancora" name="RR-msm7x30/android_device_samsung_ancora" remote="github" revision="cm-12.1" />
   <project path="kernel/samsung/msm7x30-common" name="RR-msm7x30/samsung-kernel-msm7x30" remote= "github" revision="cm-12.1"/> 
   <project path="vendor/samsung/ancora" name="RR-msm7x30/android_vendor_samsung_ancora" remote="github" revision="cm-12.1"/> 
