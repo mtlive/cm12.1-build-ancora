@@ -64,4 +64,5 @@ source build/envsetup.sh
 breakfast ancora
 croot
 #make clean
-lunch ancora-userdebug && mka recoveryimage #brunch ancora
+#lunch ancora-userdebug 
+mka recoveryimage #brunch ancora
