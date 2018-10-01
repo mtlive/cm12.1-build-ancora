@@ -49,7 +49,7 @@ build:
     - source setup-others.sh
     - cd /root/android/lineage/out/target/product/ancora
     - chmod +x $SHIPPABLE_BUILD_DIR/upload-release.sh
-    - $SHIPPABLE_BUILD_DIR/upload-release.sh github_api_token=$GITHUB_TOKEN owner=mtlive repo=cm12.1-build-ancora tag='date -u +%D' filename=./recovery.img
+    - $SHIPPABLE_BUILD_DIR/upload-release.sh github_api_token=$GITHUB_TOKEN owner=mtlive repo=cm12.1-build-ancora tag=$(date -u +%D) filename=./recovery.img
     - ls -l
   on_failure:
     - >
