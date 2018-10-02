@@ -49,7 +49,7 @@ build:
   on_success:
     - cd /root/android/lineage/out/target/product/ancora
     - chmod +x $SHIPPABLE_BUILD_DIR/upload-release.sh
-    - if [ "$IS_GIT_TAG" == "true" ]; then $SHIPPABLE_BUILD_DIR/upload-release.sh github_api_token=$GITHUB_TOKEN owner=mtlive repo=cm12.1-build-ancora tag=$GIT_TAG_NAME filename=./recovery.img
+    - if [ "$IS_GIT_TAG" == "true" ]; then $SHIPPABLE_BUILD_DIR/upload-release.sh github_api_token=$GITHUB_TOKEN owner=mtlive repo=cm12.1-build-ancora tag=$GIT_TAG_NAME filename=./recovery.img ; fi
   on_failure:
     - >
       echo "Create cache archive" &&
