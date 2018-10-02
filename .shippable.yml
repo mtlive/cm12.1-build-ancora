@@ -41,16 +41,15 @@ build:
     - export PATH=/usr/lib/jvm/java-7-openjdk-amd64/bin:$PATH
     - sudo update-alternatives --config java  <<<'1'
     - sudo update-alternatives --config javac <<<'1'
-    
     - export USE_CCACHE=1
     - ccache -M 30G
     - chmod +x setup-others.sh
     - export clonedir=$(pwd)
     - source setup-others.sh
+  on_success:
     - cd /root/android/lineage/out/target/product/ancora
     - chmod +x $SHIPPABLE_BUILD_DIR/upload-release.sh
-    - $SHIPPABLE_BUILD_DIR/upload-release.sh github_api_token=$GITHUB_TOKEN owner=mtlive repo=cm12.1-build-ancora tag=$(date -u +%m%d%Y) filename=./recovery.img
-    - ls -l
+    - if [ "$IS_GIT_TAG" == "true" ]; then $SHIPPABLE_BUILD_DIR/upload-release.sh github_api_token=$GITHUB_TOKEN owner=mtlive repo=cm12.1-build-ancora tag=$GIT_TAG_NAME filename=./recovery.img
   on_failure:
     - >
       echo "Create cache archive" &&
