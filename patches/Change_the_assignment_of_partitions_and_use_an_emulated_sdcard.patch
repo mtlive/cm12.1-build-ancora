@@ -1,0 +1,156 @@
+From 9a4e483770e8e2084095c44fa8cd2a0949df6ec9 Mon Sep 17 00:00:00 2001
+From: Cristoforo Cataldo <cristoforo.cataldo@gmail.com>
+Date: Tue, 9 Dec 2014 15:21:01 +0100
+Subject: [PATCH] ramdisk: Change the assignment of partitions and use an
+ emulated sdcard
+
+Since there isn't available space inside /data and /system partitions, we must
+redistribuite partitions and use internal sdcard space as data partition.
+The new partitions configuration is the following:
+
+| Mount Point | Device                |  Size   | Note                       |
+|----------------------------------------------------------------------------|
+| <not used>  | /dev/block/mmcblk0p16 |   60 MB | previously used as /cache  |
+| /cache      | /dev/block/mmcblk0p15 |  535 MB | previously used as /system |
+| /system     | /dev/block/mmcblk0p17 |  1.0 GB | previously used as /data   |
+| /data       | /dev/block/mmcblk0p28 |  1.7 GB | previously used as /sdcard |
+
+The internal sd card will be emulated (emulatedsd) and will share data partition space.
+---
+ BoardConfig.mk                                |  6 +--
+ .../base/core/res/res/xml/storage_list.xml    |  7 ++--
+ rootdir/fstab.qcom                            |  7 ++--
+ rootdir/init.qcom.rc                          | 37 ++++++++++++-------
+ 4 files changed, 32 insertions(+), 25 deletions(-)
+
+diff --git a/BoardConfig.mk b/BoardConfig.mk
+index 870020fc..ea6ff1d8 100644
+--- a/BoardConfig.mk
++++ b/BoardConfig.mk
+@@ -130,8 +130,8 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
+ BOARD_BOOTIMAGE_PARTITION_SIZE := 5767168
+ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 7864320
+-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 560988160
+-BOARD_USERDATAIMAGE_PARTITION_SIZE := 1163919360
+-BOARD_CACHEIMAGE_PARTITION_SIZE := 62914560
++BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1163919360
++BOARD_USERDATAIMAGE_PARTITION_SIZE := 1832894464
++BOARD_CACHEIMAGE_PARTITION_SIZE := 560988160
+ BOARD_FLASH_BLOCK_SIZE := 131072
+ BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+ 
+diff --git a/overlay/frameworks/base/core/res/res/xml/storage_list.xml b/overlay/frameworks/base/core/res/res/xml/storage_list.xml
+index dbc42f18..b556b667 100644
+--- a/overlay/frameworks/base/core/res/res/xml/storage_list.xml
++++ b/overlay/frameworks/base/core/res/res/xml/storage_list.xml
+@@ -33,12 +33,11 @@
+ -->
+ 
+ <StorageList xmlns:android="http://schemas.android.com/apk/res/android">
+-    <storage android:mountPoint="/storage/sdcard0"
+-             android:storageDescription="@string/storage_internal"
++    <storage android:storageDescription="@string/storage_internal"
+              android:primary="true"
++             android:emulated="true"
+              android:removable="false"
+-             android:allowMassStorage="true"
+-             android:maxFileSize="4096" />
++             android:mtpReserve="100" />
+ 
+     <storage android:mountPoint="/storage/sdcard1"
+              android:storageDescription="@string/storage_sd_card"
+diff --git a/rootdir/fstab.qcom b/rootdir/fstab.qcom
+index b1d89776..5c7c4b3b 100644
+--- a/rootdir/fstab.qcom
++++ b/rootdir/fstab.qcom
+@@ -5,15 +5,14 @@
+ #<src>                                              <mnt_point>  <type>   <mnt_flags and options>                                                                           <fs_mgr_flags>
+ /dev/block/mmcblk0p8                                /boot        emmc     defaults                                                                                          defaults
+ /dev/block/mmcblk0p13                               /recovery    emmc     defaults                                                                                          defaults
+-/dev/block/mmcblk0p15                               /system      ext4     ro,errors=panic                                                                                   wait
+-/dev/block/mmcblk0p16                               /cache       ext4     noatime,nosuid,nodev                                                                              wait,check
+-/dev/block/mmcblk0p17                               /data        f2fs     rw,noatime,nosuid,nodev,nodiratime,inline_xattr                                                   wait,encryptable=footer,length=-16384
+-/dev/block/mmcblk0p17                               /data        ext4     noatime,nosuid,nodev,noauto_da_alloc,journal_async_commit,errors=panic                            wait,check,encryptable=footer,length=-16384
++/dev/block/mmcblk0p17                               /system      ext4     ro,errors=panic                                                                                   wait
++/dev/block/mmcblk0p15                               /cache       ext4     noatime,nosuid,nodev                                                                              wait,check
++/dev/block/mmcblk0p28                               /data        f2fs     rw,noatime,nosuid,nodev,nodiratime,inline_xattr                                                   wait,encryptable=footer,length=-16384
++/dev/block/mmcblk0p28                               /data        ext4     noatime,nosuid,nodev,noauto_da_alloc,journal_async_commit,errors=panic                            wait,check,encryptable=footer,length=-16384
+ 
+ # zRAM
+ /dev/block/zram0                                    none         swap     defaults                                                                                          zramsize=134217728
+ 
+ # vold managed volumes
+-/devices/platform/msm_sdcc.2/mmc_host*              auto         auto     defaults                                                                                          voldmanaged=sdcard0:28,nonremovable,noemulatedsd
+ /devices/platform/msm_sdcc.4/mmc_host*              auto         auto     defaults                                                                                          voldmanaged=sdcard1:auto,noemulatedsd
+ /devices/platform/msm_hsusb_host.0*                 auto         auto     defaults                                                                                          voldmanaged=usbdisk:auto
+diff --git a/rootdir/init.qcom.rc b/rootdir/init.qcom.rc
+index 60ff309a..549af3cc 100644
+--- a/rootdir/init.qcom.rc
++++ b/rootdir/init.qcom.rc
+@@ -5,18 +5,24 @@ on early-init
+ 
+ on init
+-    mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
+-    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
+-    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+-    mkdir /storage/sdcard0 0700 root root
+-    mkdir /storage/sdcard1 0700 root root
+-    mkdir /storage/usbdisk 0700 root root
+-
+-    export EXTERNAL_STORAGE /storage/sdcard0
++    mkdir /mnt/shell/emulated 0700 shell shell
++    mkdir /storage/emulated 0555 root root
++
++    # External storage directories
++    mkdir /mnt/media_rw/sdcard1 0700 media_rw media_rw
++    mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
++    mkdir /storage/sdcard1 0700 root root
++    mkdir /storage/usbdisk 0700 root root
++
++    export EXTERNAL_STORAGE /storage/emulated/legacy
++    export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
++    export EMULATED_STORAGE_TARGET /storage/emulated
+     export SECONDARY_STORAGE /storage/sdcard1
+ 
+-    # for backwards compatibility
+-    symlink /storage/sdcard0 /sdcard
+-    symlink /storage/sdcard0 /mnt/sdcard
++    # Support legacy paths
++    symlink /storage/emulated/legacy /sdcard
++    symlink /storage/emulated/legacy /mnt/sdcard
++    symlink /storage/emulated/legacy /storage/sdcard0
++    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
+     symlink /storage/sdcard1 /external_sd
+     symlink /storage/sdcard1 /mnt/external_sd
+     symlink /storage/usbdisk /usbdisk
+@@ -206,8 +212,11 @@ on fs
+     swapon_all fstab.qcom
+ 
+     setprop ro.crypto.tmpfs_options size=128m,mode=0771,uid=1000,gid=1000
++    setprop ro.crypto.fuse_sdcard true
+ 
+ on post-fs-data
++    mkdir /data/media 0770 media_rw media_rw
++
+     # create log system
+     mkdir /data/log 0775 system log
+ 
+@@ -216,7 +225,7 @@ on post-fs-data
+ 
+-service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
++# FUSE sdcard daemon for rich permissions (runs as media_rw)
++service sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell/emulated
+     class late_start
+-    disabled
+ 
+ service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1 /storage/sdcard1
+     class late_start
+@@ -272,7 +281,7 @@ service get_macaddrs /system/bin/get_macaddrs
+     disabled
+ 
+ # create filesystems if necessary
+-service setup_fs /system/bin/setup_fs /dev/block/mmcblk0p16
++service setup_fs /system/bin/setup_fs /dev/block/mmcblk0p15
+     class core
+     user root
+     group root

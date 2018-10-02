@@ -1,0 +1,22 @@
+From 619fcef5b38d5c73ccddf80d8bd799ed20208e2a Mon Sep 17 00:00:00 2001
+From: sirmordred <bambu_bambu@windowslive.com>
+Date: Wed, 31 Dec 2014 02:21:02 +0200
+Subject: [PATCH] cm: Switch to full phone config
+
+* our /system partition can handle full package easily after
+  partition assignment
+---
+ cm.mk     | 2 +-
+ 1 files changed, 1 insertion(+), 1 deletions(-)
+
+diff --git a/cm.mk b/cm.mk
+index 4ef5f319..5965f62e 100644
+--- a/cm.mk
++++ b/cm.mk
+@@ -1,5 +1,5 @@
+ # Inherit some common CM stuff.
+-$(call inherit-product, vendor/cm/config/common_mini_phone.mk)
++$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+ 
+ # Inherit device configuration
+ $(call inherit-product, $(LOCAL_PATH)/full_ancora.mk)

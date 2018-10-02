@@ -1,0 +1,22 @@
+From 04a5d69b1f24d7160b21c1e683f1aef5d0c93e03 Mon Sep 17 00:00:00 2001
+From: Arne Coucheron <arco68@gmail.com>
+Date: Tue, 24 Feb 2015 05:17:51 +0100
+Subject: [PATCH] rootdir: Remove sdcard1 from fuse_usbdisk service
+
+---
+ rootdir/init.qcom.rc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/rootdir/init.qcom.rc b/rootdir/init.qcom.rc
+index 0b0818d3..5082b39d 100644
+--- a/rootdir/init.qcom.rc
++++ b/rootdir/init.qcom.rc
+@@ -218,7 +218,7 @@ service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1
+     class late_start
+     disabled
+ 
+-service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/sdcard1:/storage/usbdisk
++service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
+     class late_start
+     disabled
+ 
