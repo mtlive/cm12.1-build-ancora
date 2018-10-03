@@ -2,7 +2,7 @@
 <manifest>
   
 
-  <project path="bootable/recovery-twrp" name="omnirom/android_bootable_recovery" remote="github" revision="android-7.1" groups="pdk-cw-fs"/>
+  <project path="bootable/recovery-twrp" name="omnirom/android_bootable_recovery" remote="github" revision="android-8.1" groups="pdk-cw-fs"/>
   
   <project path="device/samsung/ancora" name="RR-msm7x30/android_device_samsung_ancora" remote="github" revision="cm-12.1" />
   <project path="kernel/samsung/msm7x30-common" name="RR-msm7x30/samsung-kernel-msm7x30" remote= "github" revision="cm-12.1"/> 
