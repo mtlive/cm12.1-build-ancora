@@ -55,9 +55,9 @@ git clone https://bitbucket.org/UBERTC/arm-eabi-4.9 prebuilts/gcc/linux-x86/arm/
 rm -R prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8
 git clone https://bitbucket.org/UBERTC/arm-linux-androideabi-4.9 prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.8
 #Switch to default partition layout
-git apply -R $BASEDIR/patches/Change_the_assignment_of_partitions_and_use_an_emulated_sdcard.patch $BASEDIR/patches/Switch_to_full_phone_config.patch --directory=~/android/lineage/device/samsung/ancora
+git apply -R $BASEDIR/patches/Change_the_assignment_of_partitions_and_use_an_emulated_sdcard.patch $BASEDIR/patches/Switch_to_full_phone_config.patch --directory=device/samsung/ancora
 #Patches for TWRP
-git apply -R $BASEDIR/patches/twrp/Support_v2_fstab_format.patch $BASEDIR/patches/twrp/missing_install-supersu.sh_in_userdebug_build.patch --directory=~/android/lineage/bootable/recovery-twrp
+git apply -R $BASEDIR/patches/twrp/Support_v2_fstab_format.patch $BASEDIR/patches/twrp/missing_install-supersu.sh_in_userdebug_build.patch --directory=bootable/recovery-twrp
 
 java -version
 javac -version
