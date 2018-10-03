@@ -64,7 +64,7 @@ javac -version
 
 cd ~/android/lineage
 source build/envsetup.sh
-breakfast ancora
+breakfast ancora eng
 croot
 #make clean
 #lunch ancora-userdebug 
