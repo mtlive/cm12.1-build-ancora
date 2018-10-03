@@ -1,0 +1,24 @@
+From c20e3491bc3e61d2cdb916a882040f196d827ce5 Mon Sep 17 00:00:00 2001
+From: Xuefer <xuefer@gmail.com>
+Date: Wed, 16 Nov 2016 17:46:45 +0800
+Subject: [PATCH] supersu: missing install-supersu.sh in userdebug build
+
+Change-Id: Ia2295812d44b38658eb98038a5f5bdc25f7b03c6
+Signed-off-by: Xuefer <xuefer@gmail.com>
+---
+ Android.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Android.mk b/Android.mk
+index 175b69ebc..da7353879 100644
+--- a/Android.mk
++++ b/Android.mk
+@@ -404,7 +404,7 @@ ifeq ($(TW_INCLUDE_DUMLOCK), true)
+ endif
+ ifneq ($(TW_EXCLUDE_SUPERSU), true)
+     LOCAL_ADDITIONAL_DEPENDENCIES += \
+-        install-recovery.sh 99SuperSUDaemon Superuser.apk
++        install-recovery.sh install-supersu.sh 99SuperSUDaemon Superuser.apk
+     ifeq ($(TARGET_ARCH), arm)
+         LOCAL_ADDITIONAL_DEPENDENCIES += \
+             chattr.pie libsupol.so suarm supolicy
