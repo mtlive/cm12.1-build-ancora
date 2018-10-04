@@ -57,14 +57,25 @@ git clone https://bitbucket.org/UBERTC/arm-linux-androideabi-4.9 prebuilts/gcc/l
 #Switch to default partition layout
 git apply -R $BASEDIR/patches/Change_the_assignment_of_partitions_and_use_an_emulated_sdcard.patch $BASEDIR/patches/Switch_to_full_phone_config.patch --directory=device/samsung/ancora
 #Patches for TWRP
-git apply -R $BASEDIR/patches/twrp/Support_v2_fstab_format.patch $BASEDIR/patches/twrp/missing_install-supersu.sh_in_userdebug_build.patch --directory=bootable/recovery-twrp
+git apply --verbose -R $BASEDIR/patches/twrp/Support_v2_fstab_format.patch $BASEDIR/patches/twrp/missing_install-supersu.sh_in_userdebug_build.patch --directory=bootable/recovery-twrp
+#kernel options pruning
+sed -i 's/CONFIG_CC_OPTIMIZE_MORE=y/CONFIG_CC_OPTIMIZE_DEFAULT=y/g' kernel/samsung/msm7x30-common/arch/arm/configs/ancora_defconfig
+sed -i '/FREQ_GOV_ADAPTIVE/d' kernel/samsung/msm7x30-common/arch/arm/configs/ancora_defconfig
+sed -i '/FREQ_GOV_BRAZILIANWAX/d' kernel/samsung/msm7x30-common/arch/arm/configs/ancora_defconfig
+sed -i '/FREQ_GOV_CONSERVATIVE/d' kernel/samsung/msm7x30-common/arch/arm/configs/ancora_defconfig
+sed -i '/FREQ_GOV_HYPER/d' kernel/samsung/msm7x30-common/arch/arm/configs/ancora_defconfig
+sed -i '/FREQ_GOV_INTELLIDEMAND/d' kernel/samsung/msm7x30-common/arch/arm/configs/ancora_defconfig
+sed -i '/FREQ_GOV_INTERACTIVEX/d' kernel/samsung/msm7x30-common/arch/arm/configs/ancora_defconfig
+sed -i '/FREQ_GOV_LIONHEART/d' kernel/samsung/msm7x30-common/arch/arm/configs/ancora_defconfig
+sed -i '/FREQ_GOV_LULZACTIVE/d' kernel/samsung/msm7x30-common/arch/arm/configs/ancora_defconfig
+sed -i '/FREQ_GOV_ONDEMANDX/d' kernel/samsung/msm7x30-common/arch/arm/configs/ancora_defconfig
 
 java -version
 javac -version
 
 cd ~/android/lineage
 source build/envsetup.sh
-breakfast ancora
+breakfast ancora eng
 croot
 #make clean
 #lunch ancora-userdebug 
