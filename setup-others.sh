@@ -58,6 +58,9 @@ git clone https://bitbucket.org/UBERTC/arm-linux-androideabi-4.9 prebuilts/gcc/l
 git apply -R $BASEDIR/patches/Change_the_assignment_of_partitions_and_use_an_emulated_sdcard.patch $BASEDIR/patches/Switch_to_full_phone_config.patch --directory=device/samsung/ancora
 #Patches for TWRP
 git apply $BASEDIR/patches/twrp/Support_v2_fstab_format.patch $BASEDIR/patches/twrp/missing_install-supersu.sh_in_userdebug_build.patch --directory=bootable/recovery-twrp
+
+mkdir -p device/samsung/ancora/recovery/root/etc
+cp $BASEDIR/patches/twrp/twrp.flags device/samsung/ancora/recovery/root/etc/
 #kernel options pruning
 sed -i 's/CONFIG_CC_OPTIMIZE_MORE=y/CONFIG_CC_OPTIMIZE_DEFAULT=y/g' kernel/samsung/msm7x30-common/arch/arm/configs/ancora_defconfig
 sed -i '/FREQ_GOV_ADAPTIVE/d' kernel/samsung/msm7x30-common/arch/arm/configs/ancora_defconfig
@@ -75,6 +78,7 @@ javac -version
 
 cd ~/android/lineage
 source build/envsetup.sh
+export ALLOW_MISSING_DEPENDENCIES=true
 breakfast ancora eng
 croot
 #make clean
