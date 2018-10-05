@@ -47,7 +47,6 @@ git revert 14c090d
 cd ~/android/lineage
 sed -i 's/utf16_to_utf8(str,\slen,\s(char\*)\sdata)/utf16_to_utf8(str, len, (char*) data, len + 1)/g' hardware/qcom/media-caf/msm7x30/dashplayer/DashPlayer.cpp   
 sed -i 's/#\sCamera/# Camera\'$'\nBOARD_USES_LEGACY_OVERLAY := true/g' device/samsung/ancora/BoardConfig.mk
-sed -i 's/#\sTWRP\srecovery/# TWRP recovery\'$'\nRECOVERY_VARIANT := twrp/g' device/samsung/ancora/BoardConfig.mk
 sed -i 's/RECOVERY_SDCARD_ON_DATA\s:=\strue//g' device/samsung/ancora/BoardConfig.mk
 cp -f $BASEDIR/config.xml device/samsung/ancora/overlay/frameworks/base/core/res/res/values/
 rm -R prebuilts/gcc/linux-x86/arm/arm-eabi-4.8
@@ -58,9 +57,13 @@ git clone https://bitbucket.org/UBERTC/arm-linux-androideabi-4.9 prebuilts/gcc/l
 git apply -R $BASEDIR/patches/Change_the_assignment_of_partitions_and_use_an_emulated_sdcard.patch $BASEDIR/patches/Switch_to_full_phone_config.patch --directory=device/samsung/ancora
 #Patches for TWRP
 git apply $BASEDIR/patches/twrp/Support_v2_fstab_format.patch $BASEDIR/patches/twrp/missing_install-supersu.sh_in_userdebug_build.patch --directory=bootable/recovery-twrp
+sed -i 's/#\sTWRP\srecovery/# TWRP recovery\'$'\nRECOVERY_VARIANT := twrp/g' device/samsung/ancora/BoardConfig.mk
+printf "\nARCH_ARM_HAVE_NEON := true\n" >> device/samsung/ancora/BoardConfig.mk
 
 mkdir -p device/samsung/ancora/recovery/root/etc
 cp $BASEDIR/patches/twrp/twrp.flags device/samsung/ancora/recovery/root/etc/
+cp device/samsung/ancora/recovery/twrp.fstab device/samsung/ancora/recovery/root/etc/
+
 #kernel options pruning
 sed -i 's/CONFIG_CC_OPTIMIZE_MORE=y/CONFIG_CC_OPTIMIZE_DEFAULT=y/g' kernel/samsung/msm7x30-common/arch/arm/configs/ancora_defconfig
 sed -i '/FREQ_GOV_ADAPTIVE/d' kernel/samsung/msm7x30-common/arch/arm/configs/ancora_defconfig
