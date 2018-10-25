@@ -10,7 +10,7 @@ chmod a+x ~/bin/repo
 PATH="$(pwd)/bin:$PATH"
 source ~/.profile
 cd ~/android/lineage
-repo init --depth=1 -u git://github.com/LineageOS/android.git --quiet -b cm-12.1  <<!
+repo init --depth=1 -u git://github.com/Unlegacy-Android/android.git --quiet -b aosp-6.0  <<!
 y
 y
 !
